@@ -1,0 +1,184 @@
+
+.patient_profile{
+    border:1px solid #ccc;
+    overflow: hidden;
+}
+.parmacy_profile{
+    border:1px solid #ccc;
+    overflow: hidden;
+}
+.pathologist_profile{
+    border:1px solid #ccc;
+    overflow: hidden;
+}
+.patient_profile h2 {
+    margin: 0px;
+    padding: 5px;
+    background: #098;
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.parmacy_profile h2 {
+    margin: 0px;
+    padding: 5px;
+    background: #098;
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.pathologist_profile h2 {
+    margin: 0px;
+    padding: 5px;
+    background: #098;
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.patient_profile h3{
+    text-align:center;
+    font-size: 20px;
+}
+.parmacy_profile h3{
+    text-align:center;
+    font-size: 20px;
+}
+.pathologist_profile h3{
+    text-align:center;
+    font-size: 20px;
+}
+.patient_profile h4{}
+.patient_profile h4 a{}
+.patient_profile img{
+    width:130px;
+    height:150px;
+}
+.parmacy_profile h4{}
+.parmacy_profile h4 a{}
+.parmacy_profile img{
+    width:130px;
+    height:150px;
+}
+.pathologist_profile h4{}
+.pathologist_profile h4 a{}
+.pathologist_profile img{
+    width:130px;
+    height:150px;
+}
+
+
+
+.patient_list{
+    overflow: hidden;
+
+}
+.patient_information{
+    border:1px solid #ccc;
+    overflow: hidden;
+}
+.patient_information h2 {
+    margin: 0px;
+    padding: 5px;
+    background: #098;
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.doctor_treatment_pull{
+    background:#a9dae8;
+    overflow: hidden;
+    margin-bottom:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+.test_name{ 
+    overflow: hidden;  
+}
+.test_name h4{
+    color:#fff;
+    background:rgb(194, 32, 145);
+    margin:0px;
+    padding:6px;
+}
+.testNameDisplay{
+    margin:0;padding: 10px;list-style: none;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.testNameDisplay li{
+    width:24%;
+    float: left;
+    margin-right: 1%;
+    padding:5px;
+}
+.testNameDisplay li label{
+    font-weight: normal;
+}
+.testNameDisplay li label input{
+    width:15px;height:15px;
+}
+
+#cke_1_contents{
+    height:400px !important
+}
+.write_medicine{
+    overflow: hidden;
+}
+.write_medicine h4{
+    color:#fff;
+    background:rgb(241, 90, 2);
+    margin:0px;
+    padding:6px;
+}
+.write_medicine p input{
+    margin-top:10px;
+    float:right;
+    margin-right:10px;
+}
+.write_medicine textarea{
+    height:400px;
+}
+
+#doctorListTop{
+    padding: 16px 14px;
+    background: #f3f2f2;
+}
+#doctorListTop h2{
+    margin: 0;
+}
+.doctor_profile{
+    border:1px solid #ccc;
+    margin-top:15px;
+    padding:15px 5px;    
+    min-height: 335px;
+    margin-bottom: 10px;
+}
+.doctor_profile img{
+    width:100px;
+    height:110px;
+}
+.doctor_profile h3 {
+    margin: 0px;
+    text-align: center;
+    font-size: 19px;
+    padding-top: 7px;
+}
+
+.parmacy_profile{
+    border:1px solid #ccc;
+    margin-top:20px;
+    padding:15px 5px;
+}
+.parmacy_profile img{
+    width:100px;
+    height:110px;
+}
+.parmacy_profile h3 {
+    margin: 0px;
+    text-align: center;
+    font-size: 19px;
+    padding-top: 7px;
+}
+

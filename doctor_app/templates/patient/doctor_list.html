@@ -1,0 +1,56 @@
+{% extends 'common/master.html' %}
+<title>{% block title %} Doctor List {% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid  bg-white">
+ 
+
+    <form method="POST"> {% csrf_token %}
+        <div class="row" id="doctorListTop">
+            <div class="col-sm-3">
+                <h2>Doctor List </h2> 
+            </div>
+            <div class="col-sm-5">
+                <select name="department_id" class="form-control" required>
+                    <option value="">----Select Department----</option>
+                    {% for data in department_list %}
+                        {% if department_id == data.pk %}
+                            <option value="{{ data.pk }}" selected>{{ data.department_name }} </option>
+                        {% else %}
+                            <option value="{{ data.pk }}">{{ data.department_name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <input type="submit" name="submit" value="Search Doctor" class="btn btn-success">
+            </div>
+        </div> 
+    </form>
+
+    <div class="row"> 
+        {% for doctor in doctor_lst %}
+            <div class="col-sm-6">
+                <div class="doctor_profile">
+                    <center> 
+                        <img src="/static/images/login.jpg" alt="">
+                        <h3 style="color:rgb(13, 152, 187)">{{ doctor.first_name }} {{ doctor.last_name }}</h3>
+                        <h5> {{ doctor.spectialist }}</h5> 
+                        <h5> <strong>{{ doctor.designation }} </strong></h5>
+                        <h5> {{ doctor.hospital_name.hospital_name}}, {{ doctor.hospital_name.address}}</h5>
+                        <h5> Visiting Time :  {{ doctor.working_hour}}</h5>
+                        <h5> Weekly Off Day :  {{ doctor.weekly_off_day}}</h5>
+                        <a href="/patient/doctor/{{ doctor.pk }}/profile/" class="btn btn-info" >Profile</a>
+                        <a href="/patient/doctor/{{ doctor.pk }}/appiontment/" class="btn btn-primary" >Appiontment</a>
+                    </center>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+</div>
+
+
+{% endblock %}

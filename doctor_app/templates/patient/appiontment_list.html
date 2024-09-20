@@ -1,0 +1,54 @@
+{% extends 'common/master.html' %}
+<title>{% block title %} Appiontment List {% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid  bg-white"> 
+
+    <div class="row">
+        <div class="col-sm-12"> 
+            <div class="patient_list">
+                <h2>Appointment List</h2> <hr>
+                {% if messages %}
+                    <div class="messages">
+                        <br>
+                        {% for message in messages %}
+                            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th style="width: 5%;">#</th>
+                        <th style="width: 15%;">Doctor Name</th>
+                        <th style="width: 15%;">Pateint Name</th>
+                        <th style="width: 25%;">Pateint Remarks</th>
+                        <th style="width: 11%;">Appoint Date</th>
+                        <th style="width: 14%;">Schedule Time</th>
+                        <th style="width: 10%;">Serial Numner</th>
+                        <th style="width: 10%;">Status</th>
+                    </tr>
+                    {% for data in app_lst %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ data.doctor_name }} {{ data.doctor_name.last_name }}</td>
+                            <td>{{ data.patient_name }} {{ data.patient_name.last_name }} </td>
+                            <td>{{ data.patient_remarks}} </td>
+                            <td>{{ data.appiontment_date }}</td>
+                            <td>{{ data.schedule_name.schedule_time_in }} - {{ data.schedule_name.schedule_time_out }}</td>
+                            <td>{{ data.serial_number }}</td>
+                            <td>{{ data.appointment_status }}</td>
+                        
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

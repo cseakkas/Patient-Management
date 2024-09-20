@@ -1,0 +1,76 @@
+{% extends 'common/master.html' %}
+<title>{% block title %} My Appointment {% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid  bg-white">
+
+    <div class="row">
+        <div class="col-sm-8">
+            {% if messages %}
+            <div class="messages">
+                <br>
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <h2>Get a new appointment</h2> <hr>
+            <form method="post">  {% csrf_token %}
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Doctor Name</th>
+                        <td>
+                            <input type="hidden" name="doctor_name_id" value="{{ get_doctor.pk }}">
+                            <input type="text" class="form-control" value="{{ get_doctor.first_name }} {{ get_doctor.last_name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Hospital Name</th>
+                        <td>
+                            <input type="text" class="form-control" name="hospital_name" value="{{ get_doctor.hospital_name.hospital_name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Visiting Hour</th>
+                        <td>
+                            <input type="text" class="form-control" name="visiting_hour" value="{{ get_doctor.working_hour }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Schedule Time</th>
+                        <td>
+                             <select name="schedule_name_id" class="form-control">
+                                {% for data in schedule_list %}
+                                    <option value="{{data.pk}}">{{ data.schedule_time_in }} - {{ data.schedule_time_out }}</option>
+                                {% endfor %}
+                             </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Appointment Date</th>
+                        <td>
+                            <input type="date" class="form-control" name="appiontment_date" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Patient Remark</th>
+                        <td>
+                            <textarea name="patient_remarks" class="form-control" rows="2"></textarea>
+                        </td>
+                    </tr>
+                     
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input type="submit" class="btn btn-success" value="Save Appointment">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

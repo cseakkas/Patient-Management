@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page - Paperless Patient Management System</title>
+    <!-- Latest Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .login-container {
+            margin-top: 50px;
+        }
+
+        .login-card {
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .login-form h3 {
+            font-weight: 600;
+            color: #4e73df;
+        }
+
+        .leftLoginBackground img {
+            width: 100%;
+            height: auto;
+        }
+
+        .login-btn {
+            background-color: #4e73df;
+            color: #fff;
+        }
+
+        .form-select, .form-control {
+            height: 45px;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            margin-top: 10px;
+            width: 100%;
+            height: 45px;
+        }
+        .loginFormContainer{
+            background: white !important;
+            margin-top: 20px;
+            padding: 50px;
+            box-shadow: 0px 1px 6px gray;
+            border-radius: 8px;
+
+        }
+        label{font-weight: bold;}
+    </style>
+</head>
+<body>
+
+<div class="container">  
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="loginFormContainer">
+                <div class="row">
+                    <div class="col-md-7 leftLoginBackground">
+                        <img src="/static/images/login.jpg" alt="">
+                    </div> 
+                    <div class="col-md-5">
+                        <div class="card login-card">
+                            <div class="card-body"> 
+                                <h2 class="text-center">Login</h2>
+                                <hr>
+                                {% if error %}<p style="color:red">{{error}}</p> {% endif %}
+                                <form class="login-form" method="post"> {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label for="loginType" class="form-label">Login Type</label>
+                                        <select class="form-select" id="loginType" name="user_type" required>
+                                            <option value="">Select Login Type</option>
+                                            <option value="doctor">Doctor Panel</option>
+                                            <option value="patient">Patient Panel</option>
+                                            <option value="pathologist">Pathologist Panel</option>
+                                            <option value="pharmacy">Pharmacy Panel</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userEmail" class="form-label">Email address</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                            <input type="email" class="form-control" name="user_email" id="userEmail" placeholder="Enter your email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userPassword" class="form-label">Password</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                            <input type="password" class="form-control" name="user_password" id="userPassword" placeholder="Enter your password" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success" style="width:120px">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

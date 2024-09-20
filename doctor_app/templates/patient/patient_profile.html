@@ -1,0 +1,73 @@
+{% extends 'common/master.html' %}
+<title>{% block title %} Patient Profile{% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid  bg-white">
+ 
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="patient_profile">
+                <h2>Patient Profile</h2>
+                <center>
+                    <img src="/static/images/login.jpg" alt="" style="width:140px">
+                    <h3>{{ get_user.first_name }} {{ get_user.last_name }}</h3>
+                    <h4><a href="#" class="btn btn-info">Edit Profile</a></h4>
+                </center>
+            </div>
+        </div>
+        <div class="col-sm-8" style="padding-left:0px;">
+            <div class="patient_information">
+                <h2>Patient Information</h2>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Full Name </th>
+                        <td>{{ get_user.first_name }} {{ get_user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email </th>
+                        <td>{{ get_user.user_email }} </td>
+                    </tr>
+                    <tr>
+                        <th>Mobile </th>
+                        <td>{{ get_user.user_phone }} </td>
+                    </tr>
+                    <tr>
+                        <th>Father's Name </th>
+                        <td>{{ get_user.fathers_name }} </td>
+                    </tr>
+                    <tr>
+                        <th>Mothor's</th>
+                        <td>{{ get_user.mothers_name }} </td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{ get_user.running_age }} </td>
+                    </tr>
+                    <tr>
+                        <th>Gender </th>
+                        <td>{{ get_user.get_gender_display }} </td>
+                    </tr>
+                    <tr>
+                        <th>National ID </th>
+                        <td>{{ get_user.user_nid }} </td>
+                    </tr>
+                    <tr>
+                        <th>City </th>
+                        <td>{{ get_user.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address </th>
+                        <td>{{ get_user.address1 }}</td>
+                    </tr> 
+                    
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

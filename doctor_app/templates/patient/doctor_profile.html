@@ -1,0 +1,98 @@
+{% extends 'common/master.html' %}
+<title>{% block title %} Doctor Profile{% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid  bg-white">
+ 
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="patient_profile" style="margin-top: 25px;">
+                <h2>Doctor Profile</h2>
+                <center>
+                    <img src="/static/images/login.jpg" alt="" style="width:140px">
+                    <h3>{{ get_user.first_name }} {{ get_user.last_name }}</h3>
+                    <h5><strong>{{ get_user.designation }}, {{ get_user.department.department_name }}</strong></h5>
+                    <h5>{{ get_user.hospital_name.hospital_name }}, {{get_user.hospital_name.address}}</h5>
+                    <a href="/patient/{{ get_user.pk }}/appiontment/" class="btn btn-primary" >Appiontment</a>
+                    <br>
+                    <br>
+                </center> 
+            </div>
+        </div>
+        <div class="col-sm-8" style="padding-left:0px;margin-top: 25px;">
+            <div class="patient_information">
+                <h2>Doctor Information</h2>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th> Name </th>
+                        <td>{{ get_user.first_name }} {{ get_user.last_name }}</td>
+                    </tr> 
+                    <tr>
+                        <th>Department</th>
+                        <td>{{ get_user.department.department_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Qualification</th>
+                        <td>{{ get_user.qualification }}</td>
+                    </tr>
+                    <tr>
+                        <th>Designation</th>
+                        <td>{{ get_user.designation }}</td>
+                    </tr>
+                    <tr>
+                        <th>Hospital name :</th>
+                        <td>{{ get_user.hospital_name.hospital_name }}, {{get_user.hospital_name.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Working Hour:</th>
+                        <td>{{ get_user.working_hour  }}</td>
+                    </tr>
+                    <tr>
+                        <th>Weekly Off Day:</th>
+                        <td>{{ get_user.weekly_off_day  }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Mobile </th>
+                        <td>{{ get_user.user_phone }} </td>
+                    </tr>
+                    <tr>
+                        <th>Email </th>
+                        <td>{{ get_user.user_email }} </td>
+                    </tr>
+                    <tr>
+                        <th>Father's Name </th>
+                        <td>{{ get_user.fathers_name }} </td>
+                    </tr>
+                    <tr>
+                        <th>Mothor's</th>
+                        <td>{{ get_user.mothers_name }} </td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{ get_user.running_age }} </td>
+                    </tr>
+                    <tr>
+                        <th>Gender </th>
+                        <td>{{ get_user.get_gender_display }} </td>
+                    </tr> 
+                    <tr>
+                        <th>National ID </th>
+                        <td>{{ get_user.user_nid }} </td>
+                    </tr> 
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ get_user.address }}</td>
+                    </tr>
+                   
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
