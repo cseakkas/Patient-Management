@@ -35,7 +35,7 @@
                             <td>{{ data.doctor_name }} {{ data.doctor_name.last_name }}</td>
                             <td>{{ data.patient_name }} {{ data.patient_name.last_name }} </td>
                             <td>{{ data.patient_remarks}} </td>
-                            <td>{{ data.appiontment_date }}</td>
+                            <td>{{ data.appiontment_date|date:"d M Y" }}</td>
                             <td>{{ data.schedule_name.schedule_time_in }} - {{ data.schedule_name.schedule_time_out }}</td>
                             <td>{{ data.serial_number }}</td>
                             <td>{{ data.appointment_status }}</td>

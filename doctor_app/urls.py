@@ -7,7 +7,13 @@ urlpatterns = [
     path('doctor/dashboard/', views.doctorDashboard, name="doctorDashboard"),
 
     ############# Doctor Urls  #################
-    path('doctor/profile/', views.doctor_profile),
+    path('doctor/profile/', views.doctor_profile), 
+    path('doctor/appiontment-list/', views.all_appiontment), 
+    path('doctor/patient/<int:id>/write-test/', views.patient_wise_test_write),
+    path('doctor/patient/<int:id>/write-medicine/', views.patient_wise_write_medicine),
+    path('doctor/patient-list/', views.patient_list),
+    path('doctor-list/', views.doctor_list),
+
     # path('doctor/find-patient/', views.find_a_patient),
     # path('doctor/patient-list/', views.patient_list),
     # path('doctor/all-patient/', views.all_patient),
@@ -31,6 +37,8 @@ urlpatterns = [
     path('patient/doctor-list/', patient_views.getDoctorList), 
     path('patient/doctor/<int:id>/profile/', patient_views.doctor_profile), 
     path('patient/doctor/<int:id>/appiontment/', patient_views.my_appiontment), 
-    path('patient/appiontment-list/', patient_views.appiontment_list),
+    path('patient/appiontment-list/', patient_views.appiontment_list), 
+    path('patient/my-prescription-list/', patient_views.my_prescription),
+    path('patient/my-test-list/', patient_views.my_test_list),
 
 ]

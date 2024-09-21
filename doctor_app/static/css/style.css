@@ -1686,7 +1686,7 @@ html.menu-opened body {
 	transition: all 0.2s ease-in-out 0s;
 }
 .sidebar-menu {
-    padding: 15px;
+    padding: 8px 0px;
 }
 .sidebar-menu ul {
 	font-size: 15px;
@@ -1820,8 +1820,7 @@ html.menu-opened body {
 	top: 10px;
 }
 .sidebar-menu > ul > li > a {
-    align-items: center;
-    border-radius: 3px;
+    align-items: center; 
     display: flex;
     justify-content: flex-start;
     padding: 8px 15px;
@@ -1977,7 +1976,7 @@ html.menu-opened body {
 	transition: all 0.4s ease;
 }
 .page-wrapper > .content {
-	padding: 1.875rem 1.875rem 0;
+	padding: 15px;
 }
 .page-header {
 	margin-bottom: 1.875rem;

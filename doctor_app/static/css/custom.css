@@ -165,6 +165,7 @@
     font-size: 19px;
     padding-top: 7px;
 }
+.doctor_profile h5{font-size:17px}
 
 .parmacy_profile{
     border:1px solid #ccc;
@@ -182,3 +183,9 @@
     padding-top: 7px;
 }
 
+.bg-white{
+    min-height: 650px !important;
+}
+table tr th, table tr td{
+    vertical-align: middle !important;
+}

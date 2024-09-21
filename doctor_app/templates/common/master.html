@@ -90,11 +90,27 @@
 							<li {% if request.path == "/doctor/profile/" %} class="active" {% endif %}> 
 								<a href="/doctor/profile/"><i class="fe fe-user"></i> <span>Profile</span></a> 
 							</li> 
-                            <li>  
-								<a href=""><i class="fe fe-layout"></i> <span>Appointments</span></a>
+							<li {% if request.path == "/doctor-list/" %} class="active" {% endif %}> 
+								<a href="/doctor-list/"><i class="fe fe-user"></i><span>Doctor List</span></a> 
+							</li> 
+							<li {% if request.path == "/doctor/appiontment-list/" %} class="active" {% endif %}> 
+								<a href="/doctor/appiontment-list/"><i class="fe fe-user"></i><span>Appointments</span></a> 
+							</li>     
+							<li {% if request.path == "/doctor/patient-list/" %} class="active" {% endif %}> 
+								<a href="/doctor/patient-list/"><i class="fe fe-user"></i><span>Patient List</span></a> 
 							</li> 
 							<li> 
-								<a href=""><i class="fe fe-user"></i> <span>Patients</span></a>
+								<a href=""><i class="fe fe-user"></i> <span>Patient Test</span></a>
+							</li>
+							 
+							<li> 
+								<a href=""><i class="fe fe-user"></i> <span>Patient Report</span></a>
+							</li>  
+							<li> 
+								<a href=""><i class="fe fe-user"></i> <span>Patient Medicine</span></a>
+							</li>  
+							<li> 
+								<a href=""><i class="fe fe-user"></i> <span>Test Lists</span></a>
 							</li>  
 						</ul> 
 
@@ -111,6 +127,12 @@
 							</li> 
 							<li {% if request.path == "/patient/appiontment-list/" %} class="active" {% endif %}> 
 								<a href="/patient/appiontment-list/"><i class="fe fe-user"></i> <span>Appointments</span></a> 
+							</li> 
+							<li {% if request.path == "/patient/my-prescription-list/" %} class="active" {% endif %}> 
+								<a href="/patient/my-prescription-list/"><i class="fe fe-user"></i> <span>My Prescription</span></a> 
+							</li> 
+							<li {% if request.path == "/patient/my-test-list/" %} class="active" {% endif %}> 
+								<a href="/patient/my-test-list/"><i class="fe fe-user"></i> <span>My Test List</span></a> 
 							</li> 
                             <li> 
                                 <a href="patient-list.html"><i class="fe fe-user"></i> <span>Reports</span></a>

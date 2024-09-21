@@ -1,0 +1,28 @@
+{% extends 'common/master.html' %}
+<title>{% block title %} Doctor List {% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid  bg-white"> 
+    <div class="row">
+        {% for doctor in doctor_list %}
+            <div class="col-sm-4">
+                <div class="doctor_profile">
+                    <center>
+                        <img src="/static/images/login.jpg" alt="">
+                        <h3>{{ doctor.first_name }} {{ doctor.last_name }}</h3>
+                        <h5 style="color:rgb(228, 77, 77);font-size: 16px;">{{ doctor.spectialist }}</h5>
+                        <h5>{{ doctor.designation }} </h5>
+                        <h5> {{ doctor.hospital_name.hospital_name}}</h5>
+                        <h5>{{ doctor.hospital_name.address}}</h5>
+                        <a href="/doctor/{{ doctor.pk }}/profile/" class="btn btn-info" >Profile</a>
+                        </center>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

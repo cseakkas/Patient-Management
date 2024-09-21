@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from. import models
 import datetime
 from datetime import date
+from django.conf import settings
+from django.contrib import messages
     
 def patientDashboard(request):
     
@@ -92,10 +94,10 @@ def my_appiontment(request, id):
 		chk_apointment = models.AppointmentList.objects.filter(schedule_name_id = schedule_id, doctor_name_id = doctor_id, appiontment_date = appiontment_date)
 		if chk_apointment: 
 			messages.warning(request, 'This schedule time already block for another patient.') 
-			return redirect('/patient/'+str(doctor_id)+'/appiontment/')
+			return redirect('/patient/doctor/'+str(doctor_id)+'/appiontment/')
 		else: 
 			models.AppointmentList.objects.create(
-				patient_name_id = request.session['userid'], doctor_name_id = doctor_id, appiontment_date = appiontment_date,
+				patient_name_id = request.session['user_id'], doctor_name_id = doctor_id, appiontment_date = appiontment_date,
 				appiontment_time = appiontment_time, hospital_name = hospital_name, patient_remarks = patient_remarks,
 				schedule_name_id = schedule_id, appointment_status = "Pending", serial_number = str(serial_number_gen)
 			)
@@ -121,5 +123,33 @@ def appiontment_list(request):
 		'app_lst':app_lst,
 	}
 	return render(request, 'patient/appiontment_list.html', context)
+
+
+
+
+def my_prescription(request):
+	if request.session['user_id'] == False:
+		return redirect('/')
+
+	appiontment_list = models.AppointmentList.objects.filter(patient_name_id = request.session['user_id'])
+	context = {
+		'appiontment_list':appiontment_list,
+	}
+	return render(request, 'patient/my_prescription_list.html', context)
+
+
+
+def my_test_list(request):
+	if request.session['user_id'] == False:
+		return redirect('/')
+	# my_test = models.PatientTest.objects.raw(patient_name_id = request.session['userid'])
+	patient_id = request.session['user_id']
+	my_test = models.MedicalTests.objects.filter(id=patient_id)
+	context = {
+		'my_test':my_test,
+	} 
+	return render(request, 'patient/my_test_list.html', context)
+
+
 
  

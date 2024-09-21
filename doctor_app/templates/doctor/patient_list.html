@@ -1,0 +1,44 @@
+{% extends 'common/master.html' %}
+<title>{% block title %} Patient List {% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid  bg-white"> 
+    <div class="row">
+        <div class="col-sm-12"> 
+                    
+            <div class="patient_list">
+                <h2> Patient List </h2> <hr>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>SL</th>
+                        <th>Patient Name</th>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                        <th>Serial Numner</th>
+                        <th style="width: 400px;">Status</th>
+                    </tr>
+                    {% for data in patient_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ data.patient_name }}</td>
+                            <td>{{ data.appiontment_date }}</td>
+                            <td>{{ data.appiontment_time }}</td>
+                            <td>{{ data.serial_number }}</td>
+                            <td>
+                            <a href="/doctor/patient/{{ data.pk }}/write-test/" class="btn btn-success">Write Test</a>
+                            <a href="/doctor/patient/{{ data.pk }}/write-medicine/" class="btn btn-info">Write Medicine</a>
+                            <a href="/doctor/patient/{{ data.pk }}/view-prescription/" target="_blank" class="btn btn-primary">View Prescription</a>
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div> 
+    </div>
+</div>
+
+
+{% endblock %}
