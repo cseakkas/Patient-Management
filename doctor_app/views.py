@@ -3,6 +3,10 @@ from. import models
 from django.conf import settings
 from django.contrib import messages
 
+def webHomePage(request):
+
+	return render(request, 'webpage.html')
+
 def loginPage(request):
     if request.method=="POST":
         user_type   = request.POST["user_type"]
@@ -42,7 +46,92 @@ def log_out(request):
 	request.session['user_name'] = False
 	request.session['user_email'] = False
 	request.session['user_type'] = False
-	return redirect('/')
+	return redirect('/login/')
+
+
+ 
+def registration_page(request): 
+	dept_list = models.DoctorDepartment.objects.filter(status = True).order_by('department_name')
+	hospital_list = models.HospitalList.objects.filter(status = True)
+	if request.method =="POST":
+		user_type = request.POST['usertype']
+		first_name = request.POST['first_name']
+		last_name = request.POST['last_name']
+		father_name = request.POST['father_name']
+		mother_name = request.POST['mother_name']
+		email = request.POST['email']
+		password = request.POST['password']
+		phone = request.POST['phone']
+		nid = request.POST['nid']
+		address = request.POST['address']
+
+		inputCity = request.POST['inputCity'] 
+		gender = request.POST['gender']
+		running_age = request.POST['running_age']
+
+	 
+		user_images = ""
+		if bool(request.FILES.get('user_images', False)) == True:
+			user_images  = request.FILES['user_images']
+			size = 300,330
+			im = Image.open(user_images)
+			im.thumbnail(size, Image.ANTIALIAS)
+			im.save(settings.MEDIA_ROOT+"images/user_images/"+ str(user_images), format="JPEG", quality=300)
+			user_images = "images/user_images/"+ str(user_images)
+		
+		if user_type == '1': 
+			models.DoctorList.objects.create(
+				user_type = user_type,first_name = first_name, last_name = last_name, fathers_name = father_name, mothers_name = mother_name,
+				user_email = email, user_password = password, user_phone = phone, user_nid = nid, running_age = running_age, gender = gender,
+				city = inputCity, address = address, user_images = user_images,
+			 
+				designation = request.POST['designation'],  
+				qualification = request.POST['qualification'],
+				department_id = int(request.POST['department']),
+				working_hour = request.POST['working_hour'],
+				weekly_off_day = request.POST['weekly_off_day'],  
+				hospital_name_id = request.POST['hospital_name'],  
+			)
+			messages.success(request,'Doctor Registration Successfull')
+			return redirect('/registration/')
+		
+		elif user_type == '3':
+			models.PharmacyInfo.objects.create(
+				user_type = user_type,first_name = first_name, last_name = last_name, fathers_name = father_name, mothers_name = mother_name,
+				user_email = email, user_password = password, user_phone = phone, user_nid = nid, running_age = running_age, gender = gender,
+				city = inputCity,  address1 = address, user_images = user_images,
+				pharmacy_name = request.POST['pharmacy_name'],
+				pharmacy_address = request.POST['pharmacy_address'] 		
+			)
+			messages.success(request,'pharmacy Registration Successfull')
+			return redirect('/registration/')
+
+		elif user_type == '4':
+			models.PathologistList.objects.create(
+				user_type = user_type,first_name = first_name, last_name = last_name, fathers_name = father_name, mothers_name = mother_name,
+				user_email = email, user_password = password, user_phone = phone, user_nid = nid, running_age = running_age, gender = gender,
+				city = inputCity, address1 = address, user_images = user_images,
+				designation = request.POST['designation'], 
+				qualification = request.POST['qualification'],
+				department_id = int(request.POST['department']),
+				working_hour = request.POST['working_hour'],
+				weekly_off_day = request.POST['weekly_off_day'], 				
+				hospital_name_id = int(request.POST['hospital_name']) 
+			)
+			messages.success(request,'pathologist Registration Successfull')
+			return redirect('/registration/')
+		else:
+			models.PatientTest.objects.create(
+				user_type = user_type, first_name = first_name, last_name = last_name, 
+				fathers_name = father_name, mothers_name = mother_name,
+				user_email = email, user_password = password, user_phone = phone, user_nid = nid, 
+				running_age = running_age, gender = gender,
+				city = inputCity, address1 = address, user_images = user_images
+			)
+			messages.success(request,'User Registration Successfull')
+			return redirect('/registration/')
+			
+	return render(request, 'registration.html',{'hospital_list': hospital_list, 'dept_list': dept_list})
 
 
 
