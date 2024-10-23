@@ -28,10 +28,13 @@ The **Paperless Patient Management System** is a web-based application designed 
 ## Installation
 To set up the project locally, follow these steps:
 
+### Create a virtual environment:
 - python -m venv venv
-```bash
-python -m venv venv
-```bash
+### Activate the virtual environment:
+- venv\Scripts\activate
+
+ ### Install the required packages:
+ - pip install -r requirements.txt
 
 
 ## Database Configuration
