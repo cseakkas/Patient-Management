@@ -29,6 +29,7 @@ The **Paperless Patient Management System** is a web-based application designed 
 To set up the project locally, follow these steps:
 
 ## Database Configuration
+```bash
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
