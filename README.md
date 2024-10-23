@@ -28,6 +28,12 @@ The **Paperless Patient Management System** is a web-based application designed 
 ## Installation
 To set up the project locally, follow these steps:
 
+- python -m venv venv
+```bash
+python -m venv venv
+```bash
+
+
 ## Database Configuration
 ```bash
 DATABASES = {
