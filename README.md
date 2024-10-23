@@ -49,8 +49,4 @@ DATABASES = {
         'PORT': '3306',  # Default MySQL port
     }
 }
-
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/paperless-patient-management-system.git
+ 
