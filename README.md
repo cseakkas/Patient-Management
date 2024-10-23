@@ -28,6 +28,19 @@ The **Paperless Patient Management System** is a web-based application designed 
 ## Installation
 To set up the project locally, follow these steps:
 
+## Database Configuration
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'paperless_patient_management',
+        'USER': 'username',  # Replace with your MySQL username
+        'PASSWORD': 'password',  # Replace with your MySQL password
+        'HOST': 'localhost',
+        'PORT': '3306',  # Default MySQL port
+    }
+}
+
+
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/paperless-patient-management-system.git
