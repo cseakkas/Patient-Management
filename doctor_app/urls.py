@@ -2,8 +2,9 @@ from django.urls import path
 from . import views
 from . import patient_views
 urlpatterns = [
-    path('', views.webHomePage, name="webHomePage"), 
-    path('login/', views.loginPage, name="loginPage"), 
+    # path('', views.webHomePage, name="webHomePage"), 
+    # path('login/', views.loginPage, name="loginPage"), 
+    path('', views.loginPage, name="loginPage"), 
     path('registration/', views.registration_page),
     path('logout/', views.log_out),  
     path('doctor/dashboard/', views.doctorDashboard, name="doctorDashboard"),
