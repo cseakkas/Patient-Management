@@ -142,9 +142,11 @@ def my_prescription(request):
 def my_test_list(request):
 	if request.session['user_id'] == False:
 		return redirect('/')
-	# my_test = models.PatientTest.objects.raw(patient_name_id = request.session['userid'])
+	
 	patient_id = request.session['user_id']
-	my_test = models.MedicalTests.objects.filter(id=patient_id)
+	my_test = models.PatientTest.objects.filter(patient_name_id = patient_id)
+	
+	# my_test = models.MedicalTests.objects.filter(id=patient_id)
 	context = {
 		'my_test':my_test,
 	} 

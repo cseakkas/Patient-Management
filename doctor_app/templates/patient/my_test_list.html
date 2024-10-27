@@ -15,7 +15,7 @@
                         <th>SL</th>
                         <th>Doctor Name</th>
                         <th>Serial Number</th>
-                        <th>Appiontment Date</th>
+                        <!-- <th>Appiontment Date</th> -->
                         <th>Appointment Status</th>
                         <th>Action</th>
                     </tr>
@@ -23,9 +23,10 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>{{ data.doctor_name.first_name }} {{ data.doctor_name.last_name }}</td>
-                        <td>{{ data.appointment.appointment_status }}</td>
                         <td>{{ data.appointment.serial_number }}</td>
-                        <td>{{ data.create_date }}</td>
+                        <td>{{ data.appointment.appointment_status }}</td>
+                        
+                        <!-- <td>{{ data.create_date }}</td> -->
                         <td>
                             <a href="/patient/{{ data.patient_name_id }}/{{ data.appointment.pk }}/my-test-list/" class="btn btn-primary">View Test</a>
                             <a href="/patient/{{ data.patient_name_id }}/{{ data.appointment.pk }}/test-report/" class="btn btn-warning">View Test Report</a>

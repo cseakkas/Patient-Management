@@ -1,0 +1,18 @@
+Doctor Access:
+=========================
+UserType: Doctor
+User Email: mhosman@gmail.com
+Password:123456
+
+kallol@gmail.com
+12345678
+
+
+Patient Access:
+=================
+userType: Patient
+user email: akkas@gmail.com
+password: 12345678
+
+abcd@gmail.com
+1234567

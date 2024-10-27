@@ -9,222 +9,188 @@
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 </head>
 <body>
-    
-<style>
-    /* Style the container for inputs */
-    .container {
-      background-color: #f1f1f1;
-      padding: 20px;
+
+  <style>
+    .registration_page{
+      background-color: azure;
+      padding:20px;
+      margin-top: 20px;
     }
+  </style>
   
-    /* The message box is shown when the user clicks on the password field */
-    #message {
-      display:none;
-      background: #f1f1f1;
-      color: #000;
-      position: relative;
-      padding: 3px; 
-    }
-  
-    #message span {
-      font-size: 11px;
-    }
-  
-    /* Add a green text color and a checkmark when the requirements are right */
-    .valid {
-      color: green;
-    }
-  
-    .valid:before {
-      position: relative;
-      left: -5px;
-      content: "";
-    }
-  
-    /* Add a red text color and an "x" when the requirements are wrong */
-    .invalid {
-      color: red;
-    }
-  
-    .invalid:before {
-      position: relative;
-      left: -5px;
-      content: "";
-    }
-  </style> 
-  
-  <div class="registration_page" style="margin-bottom:30px;overflow: hidden;">
-    {% if messages %}
-      <div class="messages">
-          <br>
-          {% for message in messages %}
-              <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-          {% endfor %}
-      </div>
-    {% endif %}
-    <h2>User Registration</h2> <hr>
-    <form method="post" enctype="multipart/form-data"> {% csrf_token %}
-        <div class="form-row"> 
-            <div class="col-md-12">
-              <label>User Type</label>
-                <select name="usertype" class="form-control"  id="mySelect" onchange="myFunction()" style="width: 200px;">
-                  <option>Select Your Type</option>
-                  <option value="1">Doctor</option>
-                  <option value="2">Patient</option>
-                  <option value="3">Pharmacies</option>
-                  <option value="4">Pathologist</option>
-                </select>
-              <br> 
-          </div>
-        </div> 
-  
-        <div class="form-row">
-          <div class="col-md-4">
-            <label>First Name</label>
-            <input type="text" class="form-control" name="first_name" placeholder="First name"> <br>
-          </div>
-      
-          <div class="col-md-4">
-              <label>Last Name</label>
-            <input type="text" class="form-control" name="last_name" placeholder="Last name"> <br>
-          </div>
-          <div class="col-md-4">
-            <label>Father's Name</label>
-            <input type="text" class="form-control" name="father_name" placeholder="Father name" autocomplete="off"><br>
-          </div>
-        </div>
-        <br>
-        <div class="form-row"> 
-          <div class="col-md-4">
-            <label>Mother's Name</label>
-            <input type="text" class="form-control" name="mother_name" placeholder="Mother name" autocomplete="off">
-          </div>
-          <div class="col-md-4">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
-          </div>
-          <div class="col-md-4">
-            <label for="inputPassword4">Password</label>
-            <!-- <input type="password" class="form-control"  name="password" placeholder="Password"><br> -->
-            <input type="password" class="form-control" id="psw" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  autocomplete="off" required> 
-            <h5 id="message">
-              <span id="letter" class="invalid">Lowercase, </span> <span id="capital" class="invalid">Uppercase, </span>
-              <span id="number" class="invalid">Number </span> <span id="length" class="invalid">& Minimum <b>8 characters </span>
-            </h5> <br>
-          </div>
-        </div> 
-        
-        <br>
-        <div class="form-row"> 
-          <div class="col-md-4">
-            <label>Phone Number</label>
-            <input type="text" class="form-control" name="phone" placeholder="Phone Number" autocomplete="off">
-          </div>
-          <div class="col-md-4"> 
-            <label>NID/Birth ceritficate</label>
-            <input type="text" class="form-control"  name="nid" placeholder="NID/Birth ceritficate" autocomplete="off">
-          </div> 
-          <div class="col-md-4">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" name="inputCity">  <br>
-          </div>
-        </div> 
-        <br>
-         
-      <div class="form-row">
-        <div class="col-sm-4">
-            <label for="">Gender</label>
-          <select class="form-control" name="gender">
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-            <option value="3">Other</option>
-          </select>
-        </div>
-        <div class="col-sm-4">
-          <label for="">Your Age</label>
-          <input type="test" class="form-control"  name="running_age" placeholder="Your Age...">
-        </div>
-        <div class="col-sm-4">
-            <label for="">User Images</label>
-            <input type="file"  name="user_images"><br>
-        </div>
-      </div> 
-      <div class="form-group col-md-12">
-        <label for="inputAddress">Address</label>
-        <textarea name="address" class="form-control" rows="2"></textarea> 
-      </div>
-       
-      <!-- for Doctor -->
-        <div class="form-row" id="doctor_or_phathologist">
-          <div class="col-md-4">
-            <label>Designation</label>
-            <input type="text" class="form-control" name="designation" placeholder="Designation">
-          </div>
-          <div class="col-md-4">
-              <label>Qualification</label>
-              <input type="text" class="form-control" name="qualification" placeholder="Qualification">
-          </div>
-          <div class="col-md-4">
-              <label>Department</label> 
-              <select name="department" class="form-control">
-                <option value=""> Select Department </option>
-                {% for data in dept_list %}
-                  <option value="{{ data.pk }}">{{ data.department_name }}</option> 
-                {% endfor %}
-              </select> <br>
-          </div>
-          <div class="col-md-4">
-            <label>Hospital Name</label>
-            <select name="hospital_name" class="form-control">
-              <option value="">Select Hospital</option>
-              {% for data in hospital_list %}
-                  <option value="{{ data.pk }}">{{ data.hospital_name }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label>Working Hour</label>
-            <select name="working_hour" class="form-control">
-              <option value="">Select Working Hour</option> 
-              <option value="08:00 am to 02:00 pm">08:00 am to 02:00 pm</option> 
-              <option value="02:00 pm to 10:00 pm">02:00 pm to 10:00 pm</option> 
-              <option value="12:00 am to 08:00 am">12:00 am to 08:00 am</option> 
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label>Weekly Off Day</label>
-            <select name="weekly_off_day" class="form-control">
-              <option value="">Select Working Hour</option> 
-              <option value="Friday">Friday</option> 
-              <option value="Saturday">Saturday</option> 
-              <option value="Sunday">Sunday</option>  
-            </select>
-          </div> 
-        </div>
-  
-        <div class="form-row" id="for_pharmacy">
-          <div class="form-group col-md-6">
-            <label>Pharmacy Name</label>
-            <input type="text" class="form-control" name="pharmacy_name" placeholder="parmacy Name">
-          </div>
-      
-          <div class="form-group col-md-6">
-            <label>Pharmacy address</label>
-            <input type="text" class="form-control" name="pharmacy_address" placeholder="parmacy address">
-          </div>
-        </div>
-    
-        <div class="form-row col-sm-12">
+  <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+ <div class="container"> 
+    <div class="registration_page" style="margin-bottom:30px;overflow: hidden;">
+      {% if messages %}
+        <div class="messages">
             <br>
-           <input type="submit" class="btn btn-success" value="Save Data" />
+            {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
         </div>
-  
+      {% endif %}
+      <h2>User Registration</h2> <hr>
+      
+          <div class="row"> 
+              <div class="col-md-12">
+                <label>User Type</label>
+                  <select name="usertype" class="form-control"  id="mySelect" onchange="myFunction()" style="width: 200px;">
+                    <option>Select Your Type</option>
+                    <option value="1">Doctor</option>
+                    <option value="2">Patient</option>
+                    <option value="3">Pharmacies</option>
+                    <option value="4">Pathologist</option>
+                  </select>
+                <br> 
+            </div>
+          </div> 
+    
+          <div class="row">
+            <div class="col-md-4">
+              <label>First Name</label>
+              <input type="text" class="form-control" name="first_name" placeholder="First name"> <br>
+            </div>
         
-       
-      </form>
+            <div class="col-md-4">
+                <label>Last Name</label>
+              <input type="text" class="form-control" name="last_name" placeholder="Last name"> <br>
+            </div>
+            <div class="col-md-4">
+              <label>Father's Name</label>
+              <input type="text" class="form-control" name="father_name" placeholder="Father name" autocomplete="off"><br>
+            </div>
+          </div>
+          <br>
+          <div class="row"> 
+            <div class="col-md-4">
+              <label>Mother's Name</label>
+              <input type="text" class="form-control" name="mother_name" placeholder="Mother name" autocomplete="off">
+            </div>
+            <div class="col-md-4">
+              <label for="inputEmail4">Email</label>
+              <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
+            </div>
+            <div class="col-md-4">
+              <label for="inputPassword4">Password</label>
+              <!-- <input type="password" class="form-control"  name="password" placeholder="Password"><br> -->
+              <input type="password" class="form-control" id="psw" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  autocomplete="off" required> 
+              <h5 id="message">
+                <span id="letter" class="invalid">Lowercase, </span> <span id="capital" class="invalid">Uppercase, </span>
+                <span id="number" class="invalid">Number </span> <span id="length" class="invalid">& Minimum <b>8 characters </span>
+              </h5> <br>
+            </div>
+          </div> 
+          
+          <br>
+          <div class="row"> 
+            <div class="col-md-4">
+              <label>Phone Number</label>
+              <input type="text" class="form-control" name="phone" placeholder="Phone Number" autocomplete="off">
+            </div>
+            <div class="col-md-4"> 
+              <label>NID/Birth ceritficate</label>
+              <input type="text" class="form-control"  name="nid" placeholder="NID/Birth ceritficate" autocomplete="off">
+            </div> 
+            <div class="col-md-4">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" name="inputCity">  <br>
+            </div>
+          </div> 
+          <br>
+          
+        <div class="row">
+          <div class="col-sm-4">
+              <label for="">Gender</label>
+            <select class="form-control" name="gender">
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+              <option value="3">Other</option>
+            </select>
+          </div>
+          <div class="col-sm-4">
+            <label for="">Your Age</label>
+            <input type="test" class="form-control"  name="running_age" placeholder="Your Age...">
+          </div>
+          <div class="col-sm-4">
+              <label for="">User Images</label>
+              <input type="file"  name="user_images"><br>
+          </div>
+        </div> 
+        <div class="form-group col-md-12">
+          <label for="inputAddress">Address</label>
+          <textarea name="address" class="form-control" rows="2"></textarea> 
+        </div>
+        
+        <!-- for Doctor -->
+          <div class="row" id="doctor_or_phathologist">
+            <div class="col-md-4">
+              <label>Designation</label>
+              <input type="text" class="form-control" name="designation" placeholder="Designation">
+            </div>
+            <div class="col-md-4">
+                <label>Qualification</label>
+                <input type="text" class="form-control" name="qualification" placeholder="Qualification">
+            </div>
+            <div class="col-md-4">
+                <label>Department</label> 
+                <select name="department" class="form-control">
+                  <option value=""> Select Department </option>
+                  {% for data in dept_list %}
+                    <option value="{{ data.pk }}">{{ data.department_name }}</option> 
+                  {% endfor %}
+                </select> <br>
+            </div>
+            <div class="col-md-4">
+              <label>Hospital Name</label>
+              <select name="hospital_name" class="form-control">
+                <option value="">Select Hospital</option>
+                {% for data in hospital_list %}
+                    <option value="{{ data.pk }}">{{ data.hospital_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label>Working Hour</label>
+              <select name="working_hour" class="form-control">
+                <option value="">Select Working Hour</option> 
+                <option value="08:00 am to 02:00 pm">08:00 am to 02:00 pm</option> 
+                <option value="02:00 pm to 10:00 pm">02:00 pm to 10:00 pm</option> 
+                <option value="12:00 am to 08:00 am">12:00 am to 08:00 am</option> 
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label>Weekly Off Day</label>
+              <select name="weekly_off_day" class="form-control">
+                <option value="">Select Working Hour</option> 
+                <option value="Friday">Friday</option> 
+                <option value="Saturday">Saturday</option> 
+                <option value="Sunday">Sunday</option>  
+              </select>
+            </div> 
+          </div>
+    
+          <div class="row" id="for_pharmacy">
+            <div class="form-group col-md-6">
+              <label>Pharmacy Name</label>
+              <input type="text" class="form-control" name="pharmacy_name" placeholder="parmacy Name">
+            </div>
+        
+            <div class="form-group col-md-6">
+              <label>Pharmacy address</label>
+              <input type="text" class="form-control" name="pharmacy_address" placeholder="parmacy address">
+            </div>
+          </div>
+      
+          <div class="row col-sm-12">
+              <br>
+            <input type="submit" class="btn btn-success" value="Save Data" />
+          </div>
+     
   </div>
-  
-  
+</div> 
+ 
+        
+</form>
           
   
   
