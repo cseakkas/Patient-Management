@@ -263,11 +263,21 @@ class PharmacyInfo(models.Model):
 ##############################   pathologist  #############################
 
 class PathologistList(models.Model): 
-    first_name          = models.CharField(max_length=100, blank=True)
-    last_name           = models.CharField(max_length=100, blank=True)
+    first_name          = models.CharField(max_length=100, blank=True, null=True)
+    last_name           = models.CharField(max_length=100, blank=True, null=True)
     user_email          = models.EmailField(max_length=100, unique = True)
-    user_password       = models.CharField(max_length=100)
-    user_phone          = models.CharField(max_length=100) 
+    user_password       = models.CharField(max_length=100, null=True)
+    user_phone          = models.CharField(max_length=100, null=True)
+    user_nid            = models.CharField(max_length=100, null=True)
+    running_age         = models.CharField(max_length=100, null=True)
+    gender_type = (
+        ('Male',  'Male'),
+        ('Female',  'Female'),
+    )
+    gender              = models.CharField(max_length=10, choices=gender_type)
+    fathers_name        = models.CharField(max_length=100)
+    mothers_name        = models.CharField(max_length=100)
+    
     department          = models.ForeignKey(DoctorDepartment, on_delete=models.DO_NOTHING, blank=True, null=True)
     hospital_name       = models.ForeignKey(HospitalList, on_delete=models.DO_NOTHING, blank=True, null=True)
     working_hour        = models.CharField(max_length=100,blank=True)
@@ -276,11 +286,8 @@ class PathologistList(models.Model):
     qualification       = models.CharField(max_length=100,blank=True)
     spectialist         = models.CharField(max_length=100,blank=True)  
     city                = models.CharField(max_length=100)
-    state               = models.CharField(max_length=100)
-    zipcode             = models.CharField(max_length=100)
-    address1            = models.TextField(blank=True)
-    address2            = models.TextField(blank=True) 
-    created         = models.DateField(auto_now_add=True) 
+    address             = models.TextField(blank=True)
+    created             = models.DateField(auto_now_add=True) 
     status              = models.BooleanField(default=True)
     
     def __str__(self):

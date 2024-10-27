@@ -82,6 +82,7 @@ def registration_page(request):
 			 
 				designation = request.POST['designation'],  
 				qualification = request.POST['qualification'],
+				spectialist = request.POST['spectialist'],
 				department_id = int(request.POST['department']),
 				working_hour = request.POST['working_hour'],
 				weekly_off_day = request.POST['weekly_off_day'],  
@@ -96,13 +97,13 @@ def registration_page(request):
 				fathers_name = father_name, mothers_name = mother_name,
 				user_email = email, user_password = password, user_phone = phone, 
 				user_nid = nid, running_age = running_age, gender = gender,
-				city = inputCity,  address = address, 
+				city = inputCity,  address = address,
 
 				pharmacy_name = request.POST['pharmacy_name'],
 				pharmacy_address = request.POST['pharmacy_address'] 		
 			)
 			messages.success(request,'pharmacy Registration Successfull')
-			return redirect('/registration/')
+			return redirect('/')
 
 		elif user_type == '4':
 			models.PathologistList.objects.create(
@@ -120,7 +121,7 @@ def registration_page(request):
 				hospital_name_id = int(request.POST['hospital_name']) 
 			)
 			messages.success(request,'pathologist Registration Successfull')
-			return redirect('/registration/')
+			return redirect('/')
 		else:
 			models.PatientList.objects.create(
 				first_name = first_name, last_name = last_name, 
