@@ -12,18 +12,33 @@
 
   <style>
     .registration_page{
-      background-color: azure;
-      padding:20px;
+      background-color: rgb(235, 235, 235);
+      padding:20px; 
+    }
+    .registration_header{
+      background: #bebebe;
+      color:rgb(42, 42, 44);   
       margin-top: 20px;
+    }
+    .registration_header h1{
+      text-align: center;
+      padding:10px;
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 0;
     }
   </style>
   
   <form method="post" enctype="multipart/form-data"> {% csrf_token %}
  <div class="container"> 
+    <div class="registration_header">
+      <h1>Paperless Patient Management System.</h1>
+    </div>
     <div class="registration_page" style="margin-bottom:30px;overflow: hidden;">
+      
       {% if messages %}
         <div class="messages">
-            <br>
+           
             {% for message in messages %}
                 <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
             {% endfor %}
@@ -40,27 +55,26 @@
                     <option value="2">Patient</option>
                     <option value="3">Pharmacies</option>
                     <option value="4">Pathologist</option>
-                  </select>
-                <br> 
+                  </select> 
             </div>
           </div> 
     
           <div class="row">
             <div class="col-md-4">
               <label>First Name</label>
-              <input type="text" class="form-control" name="first_name" placeholder="First name"> <br>
+              <input type="text" class="form-control" name="first_name" placeholder="First name"> 
             </div>
         
             <div class="col-md-4">
                 <label>Last Name</label>
-              <input type="text" class="form-control" name="last_name" placeholder="Last name"> <br>
+              <input type="text" class="form-control" name="last_name" placeholder="Last name">
             </div>
             <div class="col-md-4">
               <label>Father's Name</label>
               <input type="text" class="form-control" name="father_name" placeholder="Father name" autocomplete="off"><br>
             </div>
           </div>
-          <br>
+         
           <div class="row"> 
             <div class="col-md-4">
               <label>Mother's Name</label>
@@ -74,14 +88,14 @@
               <label for="inputPassword4">Password</label>
               <!-- <input type="password" class="form-control"  name="password" placeholder="Password"><br> -->
               <input type="password" class="form-control" id="psw" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  autocomplete="off" required> 
-              <h5 id="message">
+              <!-- <h5 id="message">
                 <span id="letter" class="invalid">Lowercase, </span> <span id="capital" class="invalid">Uppercase, </span>
                 <span id="number" class="invalid">Number </span> <span id="length" class="invalid">& Minimum <b>8 characters </span>
-              </h5> <br>
+              </h5> -->
             </div>
           </div> 
           
-          <br>
+         
           <div class="row"> 
             <div class="col-md-4">
               <label>Phone Number</label>
@@ -93,10 +107,10 @@
             </div> 
             <div class="col-md-4">
               <label for="inputCity">City</label>
-              <input type="text" class="form-control" name="inputCity">  <br>
+              <input type="text" class="form-control" name="inputCity"> 
             </div>
           </div> 
-          <br>
+         
           
         <div class="row">
           <div class="col-sm-4">
@@ -109,16 +123,17 @@
           </div>
           <div class="col-sm-4">
             <label for="">Your Age</label>
-            <input type="test" class="form-control"  name="running_age" placeholder="Your Age...">
+            <input type="number" class="form-control"  name="running_age" placeholder="Your Age...">
           </div>
-          <div class="col-sm-4">
+          <!-- <div class="col-sm-4">
               <label for="">User Images</label>
               <input type="file"  name="user_images"><br>
+          </div> -->
+         
+          <div class="col-md-12">
+            <label for="inputAddress">Address</label>
+            <textarea name="address" class="form-control" rows="2"></textarea> 
           </div>
-        </div> 
-        <div class="form-group col-md-12">
-          <label for="inputAddress">Address</label>
-          <textarea name="address" class="form-control" rows="2"></textarea> 
         </div>
         
         <!-- for Doctor -->
@@ -138,7 +153,7 @@
                   {% for data in dept_list %}
                     <option value="{{ data.pk }}">{{ data.department_name }}</option> 
                   {% endfor %}
-                </select> <br>
+                </select>
             </div>
             <div class="col-md-4">
               <label>Hospital Name</label>
@@ -181,9 +196,14 @@
             </div>
           </div>
       
+          <div class="row col-sm-12"> 
+              <input style="margin-top:15px" type="submit" class="btn btn-success" value="Save Data" /> 
+              
+          </div>
           <div class="row col-sm-12">
-              <br>
-            <input type="submit" class="btn btn-success" value="Save Data" />
+             
+              <p>Have an account? <a href="/">Login</a></p>
+              
           </div>
      
   </div>
