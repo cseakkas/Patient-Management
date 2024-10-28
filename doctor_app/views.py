@@ -185,9 +185,9 @@ def all_appiontment(request):
 				test_exist = "Yes"
 
 			chk_patient_medicine = models.PatientMedicine.objects.filter(appointment_id=data.id).first()
-			test_exist = "No"
-			if chk_patient_test:
-				test_exist = "Yes"
+			medicine_exist = "No"
+			if chk_patient_medicine:
+				medicine_exist = "Yes"
 			place_json = {}
 			place_json["id"] = data.id
 			place_json["patient_name"] = data.patient_name
@@ -196,6 +196,7 @@ def all_appiontment(request):
 			place_json["serial_number"] = data.serial_number
 			place_json["appointment_status"] = data.appointment_status
 			place_json["test_exist"] = test_exist
+			place_json["medicine_exist"] = medicine_exist
 			appiontment_array.append(place_json)
 			
 		context={
@@ -253,6 +254,21 @@ def patient_wise_prescription(request, appointment_id):
 
 	pdf = render_to_pdf('doctor/patient_wise_prescription.html', context)
 	return HttpResponse(pdf, content_type='application/pdf')
+
+def view_test_report_by_doctor(request, id):
+	get_test_name_by_doctor  = models.PatientTestReport.objects.get(id=id)
+
+	context = {
+		'get_test_id':get_test_name_by_doctor,
+	}
+	pdf = render_to_pdf('blog/doctor/view_test_report_by_doctor.html', context)
+	return HttpResponse(pdf, content_type='application/pdf')
+
+
+
+
+
+
 
 
 def patient_list(request):

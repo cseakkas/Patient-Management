@@ -16,7 +16,9 @@
                         <th>Appointment Date</th>
                         <th>Appointment Time</th>
                         <th>Serial Numner</th>
-                        <th style="width: 400px;">Status</th>
+                        <th>Patient's Note</th>
+                        <th>Appointment Status</th>
+                        <th style="width: 160px;">Action</th>
                     </tr>
                     {% for data in patient_list %}
                         <tr>
@@ -25,11 +27,14 @@
                             <td>{{ data.appiontment_date }}</td>
                             <td>{{ data.appiontment_time }}</td>
                             <td>{{ data.serial_number }}</td>
+                            <td>{{ data.patient_remarks }}</td>
+                            <td>{{ data.appointment_status }}</td>
                             <td>
-                            <a href="/doctor/patient/{{ data.pk }}/write-test/" class="btn btn-success">Write Test</a>
-                            <a href="/doctor/patient/{{ data.pk }}/write-medicine/" class="btn btn-info">Write Medicine</a>
-                            <a href="/doctor/patient/{{ data.pk }}/view-prescription/" target="_blank" class="btn btn-primary">View Prescription</a>
-
+                                {% if data.appointment_status == "Completed" %}
+                                    <a href="/doctor/patient/{{ data.pk }}/view-prescription/" target="_blank" class="btn btn-primary">Prescription</a>
+                                {% else %}
+                                    <a href="#" class="btn btn-warning">No-Prescription</a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

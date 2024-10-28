@@ -48,10 +48,15 @@
                             <td>{{ data.serial_number }}</td>
                             <td>{{ data.appointment_status }}</td>
                             <td>
-                                
-                                <a href="/doctor/patient/{{ data.id }}/write-test/" class="btn btn-success">{% if data.test_exist == "Yes" %} View Tests {% else %} Write Test {% endif %}</a>
-                                <a href="/doctor/patient/{{ data.id }}/write-medicine/" class="btn btn-info">Write Medicine</a>
-                                <a href="/doctor/patient/{{ data.id }}/view-prescription/" target="_blank" class="btn btn-primary">View Prescription</a>
+                                {% if data.test_exist == "Yes" %}
+                                    <a href="/doctor/patient/{{ data.id }}/test-report/" class="btn btn-success">Test Report</a> 
+                                {% else %}
+                                    <a href="/doctor/patient/{{ data.id }}/write-test/" class="btn btn-success">Write Test </a>
+                                {% endif %}
+                                <a href="/doctor/patient/{{ data.id }}/write-medicine/" class="btn btn-info">{% if data.medicine_exist == "Yes" %} View Medicine {% else %} Write Medicine {% endif %}</a>
+                                {% if data.medicine_exist == "Yes" %}
+                                    <a href="/doctor/patient/{{ data.id }}/view-prescription/" target="_blank" class="btn btn-primary"> View Prescription </a> 
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
