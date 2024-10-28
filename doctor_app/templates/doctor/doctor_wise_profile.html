@@ -1,0 +1,96 @@
+{% extends 'common/master.html' %}
+<title>{% block title %}   Doctor's Profile{% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<div class="content container-fluid  bg-white">
+ 
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="patient_profile">
+                <h2>Doctor Profile</h2>
+                <center>
+                    <img src="/static/images/login.jpg" alt="" style="width:140px">
+                    <h3>{{ doctor.first_name }} {{ doctor.last_name }}</h3>
+                    <h5> <strong>{{ doctor.designation }}, {{ doctor.department.department_name}}</strong></h5>
+                    <h5> {{ doctor.hospital_name.hospital_name}}, {{ doctor.hospital_name.address}}</h5>
+                    <h5> Visiting Time :  {{ doctor.working_hour}}</h5>
+                    <h5> Weekly Off Day :  {{ doctor.weekly_off_day}}</h5>
+                </center>
+            </div>
+        </div>
+        <div class="col-sm-7" style="padding-left:0px;">
+            <div class="patient_information bg-white">
+                <h2>Doctor Information</h2>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Full Name </th>
+                        <td>{{ doctor.first_name }} {{ doctor.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email </th>
+                        <td>{{ doctor.user_email }} </td>
+                    </tr>
+                    <tr>
+                        <th>Mobile </th>
+                        <td>{{ doctor.user_phone }} </td>
+                    </tr>  
+                    <tr>
+                        <th>Qualification</th>
+                        <td>{{ doctor.qualification }} </td>
+                    </tr>
+                    <tr>
+                        <th>Designation</th>
+                        <td>{{ doctor.designation }} </td>
+                    </tr>
+                    <tr>
+                        <th>Working Hour </th>
+                        <td>{{ doctor.working_hour }} </td>
+                    </tr>
+                    <tr>
+                        <th>Weekly Off Day </th>
+                        <td>{{ doctor.weekly_off_day }} </td>
+                    </tr>
+                    <tr>
+                        <th>Hospital Name </th>
+                        <td>{{ doctor.hospital_name.hospital_name}}, {{ doctor.hospital_name.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Father's Name </th>
+                        <td>{{ doctor.fathers_name }} </td>
+                    </tr>
+                    <tr>
+                        <th>Mothor's</th>
+                        <td>{{ doctor.mothers_name }} </td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{ doctor.running_age }} </td>
+                    </tr>
+                    <tr>
+                        <th>Gender </th>
+                        <td>{{ doctor.get_gender_display }} </td>
+                    </tr> 
+                    <tr>
+                        <th>National ID </th>
+                        <td>{{ doctor.user_nid }} </td>
+                    </tr>
+                    <tr>
+                        <th>City </th>
+                        <td>{{ doctor.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ doctor.address }}</td>
+                    </tr>
+                     
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

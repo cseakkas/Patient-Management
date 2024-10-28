@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse  
 from. import models
 from django.conf import settings
 from django.contrib import messages
+from doctor_app.utils import render_to_pdf  
 
 def webHomePage(request):
 
@@ -157,26 +159,53 @@ def doctor_profile(request):
 
 
 def all_appiontment(request):
-    if request.session['user_id'] == False:
-        return redirect('/')
-        
-    doctor_id = request.session['user_id']
-    
-    if request.method=="POST":
-        serial_number = request.POST.get('serial_number', None).strip() 
-        appiontment_list = models.AppointmentList.objects.filter(doctor_name_id = doctor_id, serial_number=serial_number)
-        context = {
+
+	if request.session['user_id'] == False:
+		return redirect('/')
+
+	doctor_id = request.session['user_id']
+
+	if request.method=="POST":
+		serial_number = request.POST.get('serial_number', None).strip() 
+		appiontment_list = models.AppointmentList.objects.filter(doctor_name_id = doctor_id, serial_number=serial_number)
+		context = {
 			'serial_number':serial_number, 
 			'appiontment_list':appiontment_list,
 		}
-        return render(request, 'doctor/all_appiontment.html', context)
-        
-    else:
-        appiontment_list = models.AppointmentList.objects.filter(doctor_name_id = doctor_id)
-        context={'appiontment_list':appiontment_list,}
-        return render(request, 'doctor/all_appiontment.html', context)
+		return render(request, 'doctor/all_appiontment.html', context)
 
+	else:	
+		appiontment_list = models.AppointmentList.objects.filter(doctor_name_id = doctor_id)
+		appiontment_array = []
 
+		for data in appiontment_list:
+			chk_patient_test = models.PatientTest.objects.filter(appointment_id=data.id).first()
+			test_exist = "No"
+			if chk_patient_test:
+				test_exist = "Yes"
+
+			chk_patient_medicine = models.PatientMedicine.objects.filter(appointment_id=data.id).first()
+			test_exist = "No"
+			if chk_patient_test:
+				test_exist = "Yes"
+			place_json = {}
+			place_json["id"] = data.id
+			place_json["patient_name"] = data.patient_name
+			place_json["appiontment_date"] = data.appiontment_date
+			place_json["appiontment_time"] = data.appiontment_time
+			place_json["serial_number"] = data.serial_number
+			place_json["appointment_status"] = data.appointment_status
+			place_json["test_exist"] = test_exist
+			appiontment_array.append(place_json)
+			
+		context={
+			'appiontment_list':appiontment_list,
+			'appiontment_array':appiontment_array,
+		}
+		return render(request, 'doctor/all_appiontment.html', context)
+	
+ 
+ 
 
 def patient_wise_test_write(request, id):
 	if request.session['user_id'] == False:
@@ -210,6 +239,22 @@ def patient_wise_test_write(request, id):
 
 
 
+
+def patient_wise_prescription(request, appointment_id):
+	find_patient = models.AppointmentList.objects.get(id = appointment_id) 
+	patient_wise_test = models.PatientTest.objects.filter(appointment_id = appointment_id, patient_name_id = find_patient.patient_name.id, doctor_name_id = request.session['user_id'])
+	patient_wise_medicine = models.PatientMedicine.objects.filter(appointment_id = appointment_id, patient_name_id = find_patient.patient_name.id, doctor_name_id = request.session.get('user_id')).first()
+ 
+	context = {
+		'patient_wise_test': patient_wise_test,
+		'find_patient': find_patient,
+		'patient_wise_medicine': patient_wise_medicine,
+	}
+
+	pdf = render_to_pdf('doctor/patient_wise_prescription.html', context)
+	return HttpResponse(pdf, content_type='application/pdf')
+
+
 def patient_list(request):
 	if request.session['user_id'] == False:
 		return redirect('/')
@@ -233,6 +278,16 @@ def doctor_list(request):
 	}
     return render(request, 'doctor/doctor_list.html', context)
 
+def doctor_wise_profile(request, id):
+    if request.session['user_id'] == False:
+        return redirect('/')
+        
+    doctor = models.DoctorList.objects.filter(id=id).first()
+    context ={
+		'doctor':doctor,
+	}
+    return render(request, 'doctor/doctor_wise_profile.html', context)
+
 
 
 
@@ -250,7 +305,7 @@ def patient_wise_write_medicine(request, id):
 
 		models.PatientMedicine.objects.create(appointment_id = appointment_id, patient_name_id = find_patient.patient_name.id, medicine_name = write_medicine, doctor_name_id = doctor_id)
 		models.AppointmentList.objects.filter(id = id, doctor_name_id = doctor_id, patient_name_id = find_patient.patient_name.id).update(
-			appointment_status = "Processing"
+			appointment_status = "Completed"
 		)
 		return redirect('/doctor/patient-list/')
         

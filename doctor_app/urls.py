@@ -16,6 +16,8 @@ urlpatterns = [
     path('doctor/patient/<int:id>/write-medicine/', views.patient_wise_write_medicine),
     path('doctor/patient-list/', views.patient_list),
     path('doctor-list/', views.doctor_list),
+    path('doctor-list/<int:id>/profile/', views.doctor_wise_profile),
+    path('doctor/patient/<int:appointment_id>/view-prescription/', views.patient_wise_prescription),
 
     # path('doctor/find-patient/', views.find_a_patient),
     # path('doctor/patient-list/', views.patient_list),

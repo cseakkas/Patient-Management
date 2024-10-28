@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-sm-12"> 
             <div class="patient_list">
-                <h2>All Patient</h2> <hr>
+                <h2>All Appointment</h2> <hr>
 
                 <form method="POST" style="margin-bottom: 5px;">  {% csrf_token %}
                     <div class="row">
@@ -36,19 +36,22 @@
                         <th>Appointment Time</th>
                         <th>Serial Numner</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                     
-                    {% for data in appiontment_list %}
+                    {% for data in appiontment_array %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td>{{ data.patient_name }}</td>
                             <td>{{ data.appiontment_date }}</td>
                             <td>{{ data.appiontment_time }}</td>
                             <td>{{ data.serial_number }}</td>
+                            <td>{{ data.appointment_status }}</td>
                             <td>
-                                <a href="/doctor/patient/{{ data.pk }}/write-test/" class="btn btn-success">Write Test</a>
-                                <a href="/doctor/patient/{{ data.pk }}/write-medicine/" class="btn btn-info">Write Medicine</a>
-                                <a href="/doctor/patient/{{ data.pk }}/view-prescription/" target="_blank" class="btn btn-primary">View Prescription</a>
+                                
+                                <a href="/doctor/patient/{{ data.id }}/write-test/" class="btn btn-success">{% if data.test_exist == "Yes" %} View Tests {% else %} Write Test {% endif %}</a>
+                                <a href="/doctor/patient/{{ data.id }}/write-medicine/" class="btn btn-info">Write Medicine</a>
+                                <a href="/doctor/patient/{{ data.id }}/view-prescription/" target="_blank" class="btn btn-primary">View Prescription</a>
                             </td>
                         </tr>
                     {% endfor %}
