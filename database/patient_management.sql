@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2024 at 06:14 PM
+-- Generation Time: Oct 29, 2024 at 06:22 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -40,6 +40,19 @@ CREATE TABLE `appointment_list` (
   `patient_name_id` bigint(20) DEFAULT NULL,
   `schedule_name_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `appointment_list`
+--
+
+INSERT INTO `appointment_list` (`id`, `appiontment_date`, `hospital_name`, `appiontment_time`, `serial_number`, `appointment_status`, `patient_remarks`, `status`, `doctor_name_id`, `patient_name_id`, `schedule_name_id`) VALUES
+(1, '2024-09-22', 'Alchemi Hospital Pvt. Ltd.', '04:00 - 10:00', '240921#01', 'Processing', 'This is test', 1, 1, 1, 1),
+(2, '2024-09-23', 'Alchemi Hospital Pvt. Ltd.', '04:00 - 10:00', '240921#02', 'Completed', 'asdf asdf jalskdfj ', 1, 1, 1, 1),
+(3, '2024-09-27', 'Alchemi Hospital Pvt. Ltd.', '04:00 - 10:00', '240921#03', 'Pending', 'as kjalskdfjlaksdj flksadfsfd asdf asdfj kasdjfklasjdf lkasjdf', 1, 5, 1, 3),
+(4, '2024-10-25', 'Alchemi Hospital Pvt. Ltd.', '04:00 - 10:00', '241025#04', 'Completed', 'asdf asdf asfd asfdsfd', 1, 1, 1, 1),
+(5, '2024-10-09', 'Alchemi Hospital Pvt. Ltd.', '04:00 - 10:00', '241025#05', 'Pending', '', 1, 5, 1, 3),
+(6, '2024-10-24', 'Alchemi Hospital Pvt. Ltd.', '04:00 - 10:00', '241025#06', 'Pending', 'sad fasdf asdf asdf ', 1, 1, 1, 1),
+(7, '2024-10-28', 'Alchemi Hospital Pvt. Ltd.', '04:00 - 10:00', '241027#07', 'Processing', 'ghumaile chukhe dekhi na.', 1, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -294,7 +307,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (17, 'auth', '0012_alter_user_first_name_max_length', '2024-09-18 10:50:48.763222'),
 (18, 'doctor_app', '0001_initial', '2024-09-18 10:50:51.263813'),
 (19, 'sessions', '0001_initial', '2024-09-18 10:50:51.357556'),
-(20, 'doctor_app', '0002_auto_20240920_0021', '2024-09-19 18:21:09.905321');
+(20, 'doctor_app', '0002_auto_20240920_0021', '2024-09-19 18:21:09.905321'),
+(21, 'doctor_app', '0003_auto_20241027_2347', '2024-10-27 17:47:34.244538'),
+(22, 'doctor_app', '0004_auto_20241028_0000', '2024-10-27 18:00:24.105140');
 
 -- --------------------------------------------------------
 
@@ -313,7 +328,11 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('cwqwncciw9djo08bm26tyk7nobiqiadr', '.eJxljDEKgDAUQ69S_iyCq5NuLj2DRFu06G_F1kHEu2uFiuCWkJd3kHJ9cGtrFJVFlpoFaypJqlxIjN3WiQYell5AM8x8Ezw6z7DVEHveO76RzevX9-SPrZ4meCENEpdEiMNfE_YlXhcEo22g8wKbmjvo:1srMAU:TlTWXI82u5JmqqxLZCPBegVJ_--e6TL6s_M2X3U4YbE', '2024-10-03 18:46:18.320225');
+('5j8zzeke8uya5ufnftk6n19o7cddiifl', '.eJyrViotTi2Kz0xRsjLUgbDzEnNTlayUfFP0FByzsxOLFXwzE5Wgcqm5iZk5QMlEkIRDOoinl5yfC5MuqSwAaS1ILMlMzStRqgUA0QAf-g:1t4NYy:TC45OO2VgPAuirwmTpUN9Zys6fMFPL8ovuBrYVO4Viw', '2024-11-08 16:53:24.222428'),
+('cwqwncciw9djo08bm26tyk7nobiqiadr', '.eJyrVkrJTy7JL4rPTFGyMtSB8fISc1OVrJR8U_QUfBMzkkqTFDwSixPzlOAKUnMTM3OAKnIz8otzE_Mc0kF8veT8XKCS0uJUuHlgNm7TwNIEzSqpLADph1itVAsAn9I9ng:1ss1Qg:oyQxdtTkFyJh0IpIc5pg6Bru9cogibZYru21LK31qBw', '2024-10-05 14:49:46.314197'),
+('kfno05nntdnzc4daolfxq6l6ns31d815', '.eJyrViotTi2Kz0xRsjLUgbDzEnNTlayUfFP0FByzsxOLFXwzE5Wgcqm5iZk5QMlEkIRDOoinl5yfC5MuqSwAaS1ILMlMzStRqgUA0QAf-g:1ss3F4:iBXBDltXq6NK0Y3BVmCBbVOsZ-4F5oX_HZtWs6b3UO0', '2024-10-05 16:45:54.192596'),
+('u163e0hxjh66vfx2r5zop8k0zaqbgx6y', '.eJyrViotTi2Kz0xRskpLzClO1YHw8xJzU1FFUnMTM3NQhUoqC2CKagG3ShpR:1stQOB:HhKmrFjuC3tLrv9RcZ1CeL0Ocpm-G8t5jfA232fuIyE', '2024-10-09 11:40:59.716356'),
+('xx5ladyp4f8i0w014ovl8zh4pq2vdwx9', '.eJyrViotTi2Kz0xRsjLUgbDzEnNTlayUfFP0FHwTM5JKkxQ8EosT85Sg0qm5iZk5QPncjPzi3MQ8h3QQXy85PxemoKSyAKQ_JT-5JL9IqRYAZYAhsA:1t5p2P:rFblUgBumpXue1mK0CLWamu3rznR6GNNGiLyokasYg8', '2024-11-12 16:25:45.380627');
 
 -- --------------------------------------------------------
 
@@ -335,7 +354,8 @@ CREATE TABLE `doctor_department` (
 
 INSERT INTO `doctor_department` (`id`, `department_name`, `details`, `create_date`, `status`) VALUES
 (1, 'ENT', 'This is ENT Department', '0000-00-00', 1),
-(2, 'Cardiology', 'This is Cardiology department', '0000-00-00', 1);
+(2, 'Cardiology', 'This is Cardiology department', '0000-00-00', 1),
+(3, 'Radiotherapy', 'Radiotherapy', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -376,9 +396,12 @@ CREATE TABLE `doctor_list` (
 --
 
 INSERT INTO `doctor_list` (`id`, `first_name`, `last_name`, `user_email`, `user_password`, `user_phone`, `user_nid`, `running_age`, `gender`, `fathers_name`, `mothers_name`, `designation`, `qualification`, `spectialist`, `working_hour`, `weekly_off_day`, `city`, `state`, `zipcode`, `address`, `user_images`, `upload_date`, `status`, `department_id`, `hospital_name_id`) VALUES
-(1, 'Md. Mahbub', 'Hasan', 'mhosman@gmail.com', '123456', '01902353784', '34434343434', '45', 'Male', 'Rashid Mia', 'Somola Akter', 'Associate Professor, ENT & Head Neck Surgery', 'MBBS, FCPS (ENT), MS (ENT)', 'Specialist & Head Neck Surgeon', '04:00 - 10:00', 'Friday', 'Kendua', 'Netrokona', '2480', 'Test', '', '0000-00-00', 0, 1, 1),
-(2, 'Lt. Col. Dr. Md. Momin Uddin ', 'Kallol', 'kallol@gmail.com', '12345678', '01902353784', '34434343434', '45', 'Male', 'Rashid Mia', 'Somola Akter', 'Classified ENT Specialist & Head Neck Surgeon, ENT', 'MBBS (SSMC), FCPS (ENT), DLO, MCPS', 'ENT (Ear, Nose, Throat) Specialist & Head Neck Cancer Surgeon', '04:00 - 10:00', 'Friday', 'Kendua', 'Netrokona', '2480', 'Test', '', '0000-00-00', 0, 1, 1),
-(5, 'M.H', 'Osman', 'mhosman2@gmail.com', '123456', '01902353784', '34434343434', '45', 'Male', 'Rashid Mia', 'Somola Akter', 'Associate Professor, ENT & Head Neck Surgery', 'MBBS, FCPS (ENT), MS (ENT)', 'Specialist & Head Neck Surgeon', '04:00 - 10:00', 'Friday', 'Kendua', 'Netrokona', '2480', 'Test', '', '0000-00-00', 0, 2, 1);
+(1, 'Md. Mahbub', 'Hasan', 'mhosman@gmail.com', '123456', '01902353784', '34434343434', '45', 'Male', 'Rashid Mia', 'Somola Akter', 'Associate Professor, ENT & Head Neck Surgery', 'MBBS, FCPS (ENT), MS (ENT)', 'Specialist & Head Neck Surgeon', '04:00 - 10:00', 'Friday', 'Kendua', 'Netrokona', '2480', 'Test', '', '0000-00-00', 1, 1, 1),
+(2, 'Lt. Col. Dr. Md. Momin Uddin ', 'Kallol', 'kallol@gmail.com', '12345678', '01902353784', '34434343434', '45', 'Male', 'Rashid Mia', 'Somola Akter', 'Classified ENT Specialist & Head Neck Surgeon, ENT', 'MBBS (SSMC), FCPS (ENT), DLO, MCPS', 'ENT (Ear, Nose, Throat) Specialist & Head Neck Cancer Surgeon', '04:00 - 10:00', 'Friday', 'Kendua', 'Netrokona', '2480', 'Test', '', '0000-00-00', 1, 1, 1),
+(5, 'M.H', 'Osman', 'mhosman2@gmail.com', '123456', '01902353784', '34434343434', '45', 'Male', 'Rashid Mia', 'Somola Akter', 'Associate Professor, ENT & Head Neck Surgery', 'MBBS, FCPS (ENT), MS (ENT)', 'Specialist & Head Neck Surgeon', '04:00 - 10:00', 'Friday', 'Kendua', 'Netrokona', '2480', 'Test', '', '0000-00-00', 1, 2, 1),
+(6, 'Kendall', 'Hensley', 'qinifemeg@mailinator.com', 'Pa$$w0rd!', '+1 (607) 913-2472', '345345345345', '34', '2', 'Hakeem Decker', 'Hilary Mccormick', 'Omnis officiis culpa', 'Qui vel molestias vo', '', '', '', 'Odio sit numquam et', '', '', 'Libero nobis aliquip', '', '2024-10-27', 1, 1, 1),
+(7, 'Remedios', 'Hewitt', 'fenoga@mailinator.com', 'Pa$$w0rd!', '+1 (906) 219-9359', 'Voluptatibus non aut', '123', '1', 'Myra Haynes', 'Nichole Harrington', 'Iusto dignissimos et', 'Enim commodi eos ea', '', '02:00 pm to 10:00 pm', 'Friday', 'Non consequatur volu', '', '', 'Odio quia tempore i', '', '2024-10-27', 1, 2, 1),
+(9, 'Prof. Dr. Swapan', 'Bandyopadhyay', 'swapan@gmail.com', 'Adsf343 bwer ', '', '', '23', '1', '', '', 'Professor & Head of the Department', 'MBBS, MD (Oncology), MPhil (Radiotherapy)', 'Cancer Specialist', '08:00 am to 02:00 pm', 'Sunday', 'Dhaka', '', '', '309/2 East Nakalpara, Tajgaon, Dhaka-1212.', '', '2024-10-28', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -402,7 +425,8 @@ CREATE TABLE `doctor_schedule` (
 
 INSERT INTO `doctor_schedule` (`id`, `schedule_time_in`, `schedule_time_out`, `schedule_date`, `create_date`, `status`, `doctor_name_id`) VALUES
 (1, '04:00:00.000000', '05:00:00.000000', '2024-09-21', '0000-00-00', 1, 1),
-(2, '06:00:00.000000', '07:00:00.000000', '2024-09-21', '0000-00-00', 1, 1);
+(2, '06:00:00.000000', '07:00:00.000000', '2024-09-21', '0000-00-00', 1, 1),
+(3, '06:00:00.000000', '07:00:00.000000', '2024-09-21', '0000-00-00', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -424,7 +448,28 @@ CREATE TABLE `hospital_info` (
 --
 
 INSERT INTO `hospital_info` (`id`, `hospital_name`, `hotline`, `address`, `web_link`, `status`) VALUES
-(1, 'Alchemi Hospital Pvt. Ltd.', '1234567', 'Charpara moor, Mymensingh.', NULL, 0);
+(1, 'Alchemi Hospital Pvt. Ltd.', '1234567', 'Charpara moor, Mymensingh.', NULL, 0),
+(2, 'National Institute of Cancer Research & Hospital', '1234567', 'Charpara moor, Mymensingh.', NULL, 0),
+(3, 'Square Hospital', '01713377755', '18/F Bir Uttam Qazi Nuruzzaman Sarak, Dhaka 1205', 'https://www.squarehospital.com', 1),
+(4, 'United Hospital', '10666', 'Plot 15, Road 71, Gulshan, Dhaka 1212', 'https://www.uhlbd.com', 1),
+(5, 'Apollo Hospital Dhaka', '09666710678', 'Plot 81, Block E, Bashundhara R/A, Dhaka 1229', 'https://www.apollohospitals.com', 1),
+(6, 'Labaid Specialized Hospital', '10606', 'House 1, Road 4, Dhanmondi, Dhaka 1205', 'https://www.labaidgroup.com', 1),
+(7, 'Ibn Sina Hospital', '09610000788', 'House 48, Road 9/A, Dhanmondi, Dhaka 1209', 'https://www.ibnsinatrust.com', 1),
+(8, 'Popular Diagnostic Centre', '09613787801', 'House 16, Road 2, Dhanmondi, Dhaka 1205', 'https://www.populardiagnostic.com', 1),
+(9, 'Dhaka Medical College Hospital', '02-55165088', 'Secretariat Road, Dhaka 1000', NULL, 1),
+(10, 'Birdem General Hospital', '02-55165641', '122 Kazi Nazrul Islam Ave, Shahbagh, Dhaka 1000', 'https://www.birdemhospital.org.bd', 1),
+(11, 'Bangladesh Specialized Hospital', '10689', '21 Shyamoli, Mirpur Road, Dhaka 1207', 'https://www.bdspecializedhospital.com', 1),
+(12, 'National Heart Foundation', '02-9025331', 'Mirpur-2, Dhaka 1216', 'https://www.nhfbd.org', 1),
+(13, 'Holy Family Red Crescent Medical College', '02-9353031', '74 Eskaton Garden Rd, Dhaka 1000', 'https://www.hfrcmc.edu.bd', 1),
+(14, 'Ad-Din Hospital', '02-9330171', '2 Bara Maghbazar, Dhaka 1217', 'https://www.ad-din.org', 1),
+(15, 'Anwar Khan Modern Hospital', '01700700700', 'House 17, Road 8, Dhanmondi, Dhaka 1205', 'https://www.akmmch.com', 1),
+(16, 'Central Hospital Limited', '02-9660015', 'House 2, Road 5, Dhanmondi, Dhaka 1205', 'https://www.centralhospitalltd.com', 1),
+(17, 'Ahsania Mission Cancer Hospital', '09666710678', 'Mirpur-10, Dhaka 1216', 'https://www.ahsaniacancer.org.bd', 1),
+(18, 'Shahid Suhrawardy Medical College & Hospital', '02-9130800', 'Sher-e-Bangla Nagar, Dhaka 1207', NULL, 1),
+(19, 'Dhaka Shishu Hospital', '02-8034910', 'Sher-e-Bangla Nagar, Dhaka 1207', 'http://www.dhakashishuhospital.org.bd', 1),
+(20, 'Kuwait Bangladesh Friendship Govt. Hospital', '02-58054074', 'Uttara, Dhaka 1230', NULL, 1),
+(21, 'Mugda Medical College & Hospital', '02-7274245', 'Mugda, Dhaka 1214', NULL, 1),
+(22, 'Care Medical College & Hospital', '02-55165223', 'Road 5, Dhanmondi, Dhaka 1205', 'https://www.carehospitalbd.com', 1);
 
 -- --------------------------------------------------------
 
@@ -440,6 +485,34 @@ CREATE TABLE `medical_tests` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `medical_tests`
+--
+
+INSERT INTO `medical_tests` (`id`, `test_name`, `short_name`, `test_price`, `status`) VALUES
+(1, 'Blood Group', 'BBG', 250, 1),
+(2, 'CBC', 'CBC', 200, 1),
+(3, 'Complete Blood Count', 'CBC', 1500, 1),
+(4, 'Liver Function Test', 'LFT', 2000, 1),
+(5, 'Kidney Function Test', 'KFT', 1800, 1),
+(6, 'Lipid Profile', 'Lipid', 2500, 1),
+(7, 'Blood Sugar', 'BS', 500, 1),
+(8, 'Urinalysis', 'UA', 1000, 1),
+(9, 'Thyroid Profile', 'T3/T4/TSH', 3000, 1),
+(10, 'Electrolyte Panel', 'Electrolytes', 2200, 1),
+(11, 'Blood Urea Nitrogen', 'BUN', 700, 1),
+(12, 'Creatinine', 'CREAT', 800, 1),
+(13, 'Hemoglobin A1c', 'HbA1c', 1500, 1),
+(14, 'Prothrombin Time', 'PT', 1300, 1),
+(15, 'White Blood Cell Count', 'WBC', 600, 1),
+(16, 'Vitamin D Test', 'VitD', 2800, 1),
+(17, 'Calcium Test', 'Calcium', 1200, 1),
+(18, 'Iron Studies', 'Iron', 1700, 1),
+(19, 'C-Reactive Protein', 'CRP', 1900, 1),
+(20, 'Urine Culture', 'UC', 1400, 1),
+(21, 'Stool Examination', 'Stool', 900, 1),
+(22, 'Electrocardiogram', 'ECG', 3000, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -448,25 +521,27 @@ CREATE TABLE `medical_tests` (
 
 CREATE TABLE `pathologist_list` (
   `id` bigint(20) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
   `user_email` varchar(100) NOT NULL,
-  `user_password` varchar(100) NOT NULL,
-  `user_phone` varchar(100) NOT NULL,
+  `user_password` varchar(100) DEFAULT NULL,
+  `user_phone` varchar(100) DEFAULT NULL,
   `working_hour` varchar(100) NOT NULL,
   `weekly_off_day` varchar(100) NOT NULL,
   `designation` varchar(100) NOT NULL,
   `qualification` varchar(100) NOT NULL,
   `spectialist` varchar(100) NOT NULL,
   `city` varchar(100) NOT NULL,
-  `state` varchar(100) NOT NULL,
-  `zipcode` varchar(100) NOT NULL,
-  `address1` longtext NOT NULL,
-  `address2` longtext NOT NULL,
+  `fathers_name` varchar(100) NOT NULL,
+  `mothers_name` varchar(100) NOT NULL,
+  `address` longtext NOT NULL,
   `created` date NOT NULL,
   `status` tinyint(1) NOT NULL,
   `department_id` bigint(20) DEFAULT NULL,
-  `hospital_name_id` bigint(20) DEFAULT NULL
+  `hospital_name_id` bigint(20) DEFAULT NULL,
+  `gender` varchar(10) NOT NULL,
+  `running_age` varchar(100) DEFAULT NULL,
+  `user_nid` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -502,7 +577,10 @@ CREATE TABLE `patient_list` (
 --
 
 INSERT INTO `patient_list` (`id`, `first_name`, `last_name`, `user_email`, `user_password`, `user_phone`, `user_nid`, `running_age`, `gender`, `fathers_name`, `mothers_name`, `city`, `state`, `zipcode`, `address1`, `address2`, `patient_images`, `status`, `created`) VALUES
-(1, 'Md. Akkas', 'Mia', 'akkas@gmail.com', '12345678', '01902353773', '1234567', '23', 'Mal', 'Rashid Mia', 'Somola Akter', 'Kendua', 'Netrokona', '2480', 'Horipur, Amtola, Kendua.', NULL, '', 1, NULL);
+(1, 'Md. Akkas', 'Mia', 'akkas@gmail.com', '12345678', '01902353773', '1234567', '23', 'Mal', 'Rashid Mia', 'Somola Akter', 'Kendua', 'Netrokona', '2480', 'Horipur, Amtola, Kendua.', NULL, '', 1, NULL),
+(2, 'Md. Akkas', 'Mia', 'abcd@gmail.com', '1234567', '01902353773', '1234567', '23', 'Mal', 'Rashid Mia', 'Somola Akter', 'Kendua', 'Netrokona', '2480', 'Horipur, Amtola, Kendua.', NULL, '', 1, NULL),
+(3, 'Kameko', 'Norris', 'veza@mailinator.com', 'Pa$$w0rd!', '34543435435', 'Aute doloribus omnis', '12', '1', 'Phillip Merritt', 'Cullen Monroe', 'Nobis nulla non veri', '', '', 'Repellendus Asperna', NULL, '', 1, '2024-10-27'),
+(4, 'Kazi', 'Mahnaz', 'kazimz@gmail.com', 'Kazi147852', '01789654120', '741108520963', '25', '1', 'Noah Carver', 'Armando Hinton', 'B-Bariya', '', '', 'Voluptatem non dolo', NULL, '', 1, '2024-10-27');
 
 -- --------------------------------------------------------
 
@@ -520,6 +598,16 @@ CREATE TABLE `patient_medicine` (
   `patient_name_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `patient_medicine`
+--
+
+INSERT INTO `patient_medicine` (`id`, `medicine_name`, `created`, `status`, `appointment_id`, `doctor_name_id`, `patient_name_id`) VALUES
+(1, '<p>Tab. Napa 20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n\r\n<p>Tab. Pentonix&nbsp; &nbsp;20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n\r\n<p>Tab. Pentonix&nbsp; &nbsp;20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n', '2024-09-21', 1, 1, 1, 1),
+(2, '<p>napa</p>\r\n\r\n<p>histasin</p>\r\n\r\n<p>abc</p>\r\n\r\n<p>&nbsp;</p>\r\n', '2024-10-27', 1, 7, 1, 1),
+(3, '<p>Tab. Napa 20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n\r\n<p>Tab. Pentonix&nbsp; &nbsp;20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n\r\n<p>Tab. Pentonix&nbsp; &nbsp;20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n\r\n<p>Alatrol&nbsp; 0.5mg ------------------------30 Days</p>\r\n\r\n<p>&nbsp; &nbsp;&nbsp;1 + 0 + 1</p>\r\n\r\n<p>&nbsp;</p>\r\n', '2024-10-28', 1, 2, 1, 1),
+(4, '<p>Tab. Napa 20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n\r\n<p>Tab. Pentonix&nbsp; &nbsp;20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n\r\n<p>Tab. Pentonix&nbsp; &nbsp;20mg&nbsp; &nbsp; --------------------- 10 days</p>\r\n\r\n<p>&nbsp; &nbsp; 1 + 0 + 1</p>\r\n', '2024-10-29', 1, 4, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -535,6 +623,28 @@ CREATE TABLE `patient_tests` (
   `patient_name_id` bigint(20) DEFAULT NULL,
   `test_name_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `patient_tests`
+--
+
+INSERT INTO `patient_tests` (`id`, `created`, `status`, `appointment_id`, `doctor_name_id`, `patient_name_id`, `test_name_id`) VALUES
+(1, '2024-09-21', 1, 1, 1, 1, 1),
+(2, '2024-09-21', 1, 1, 1, 1, 2),
+(3, '2024-09-21', 1, 2, 1, 1, 1),
+(4, '2024-09-21', 1, 2, 1, 1, 2),
+(5, '2024-10-27', 1, 7, 1, 1, 1),
+(6, '2024-10-27', 1, 7, 1, 1, 2),
+(7, '2024-10-28', 1, 4, 1, 1, 1),
+(8, '2024-10-28', 1, 4, 1, 1, 5),
+(9, '2024-10-28', 1, 4, 1, 1, 7),
+(10, '2024-10-28', 1, 4, 1, 1, 8),
+(11, '2024-10-28', 1, 4, 1, 1, 9),
+(12, '2024-10-28', 1, 4, 1, 1, 13),
+(13, '2024-10-28', 1, 4, 1, 1, 15),
+(14, '2024-10-28', 1, 4, 1, 1, 16),
+(15, '2024-10-28', 1, 4, 1, 1, 17),
+(16, '2024-10-28', 1, 4, 1, 1, 18);
 
 -- --------------------------------------------------------
 
@@ -562,21 +672,31 @@ CREATE TABLE `patient_test_report` (
 
 CREATE TABLE `pharmacy_info` (
   `id` bigint(20) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
   `user_email` varchar(100) NOT NULL,
-  `user_password` varchar(100) NOT NULL,
-  `user_phone` varchar(100) NOT NULL,
+  `user_password` varchar(100) DEFAULT NULL,
+  `user_phone` varchar(100) DEFAULT NULL,
   `pharmacy_name` varchar(100) NOT NULL,
   `pharmacy_address` longtext NOT NULL,
   `city` varchar(100) NOT NULL,
-  `state` varchar(100) NOT NULL,
-  `zipcode` varchar(100) NOT NULL,
-  `address1` longtext NOT NULL,
-  `address2` longtext NOT NULL,
+  `fathers_name` varchar(100) NOT NULL,
+  `mothers_name` varchar(100) NOT NULL,
+  `address` longtext NOT NULL,
   `created` date NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `running_age` varchar(100) DEFAULT NULL,
+  `user_nid` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pharmacy_info`
+--
+
+INSERT INTO `pharmacy_info` (`id`, `first_name`, `last_name`, `user_email`, `user_password`, `user_phone`, `pharmacy_name`, `pharmacy_address`, `city`, `fathers_name`, `mothers_name`, `address`, `created`, `status`, `gender`, `running_age`, `user_nid`) VALUES
+(1, 'Kameko', 'Fernandez', 'pituq@mailinator.com', 'Pa$$w0rd!', '+1 (146) 636-4925', 'Echo Sawyer', 'Reiciendis officiis ', 'Et autem rem blandit', 'Ria Rosales', 'Yvonne Wheeler', 'Eiusmod error soluta', '2024-10-27', 1, '2', '30', '345345345345345'),
+(2, 'Astra', 'Peters', 'qivih@mailinator.com', 'Pa$$w0rd!', '+1 (998) 811-2274', 'Shad Cox', 'Laborum Ipsum prae', 'Nihil eaque sit temp', 'Dakota Elliott', 'Luke Mcfadden', 'Quos modi id tempor ', '2024-10-27', 1, '2', '22', 'Temporibus ut placea');
 
 -- --------------------------------------------------------
 
@@ -784,7 +904,7 @@ ALTER TABLE `prescription`
 -- AUTO_INCREMENT for table `appointment_list`
 --
 ALTER TABLE `appointment_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `auth_group`
@@ -838,73 +958,73 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `doctor_department`
 --
 ALTER TABLE `doctor_department`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `doctor_list`
 --
 ALTER TABLE `doctor_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `doctor_schedule`
 --
 ALTER TABLE `doctor_schedule`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `hospital_info`
 --
 ALTER TABLE `hospital_info`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `medical_tests`
 --
 ALTER TABLE `medical_tests`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pathologist_list`
 --
 ALTER TABLE `pathologist_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `patient_list`
 --
 ALTER TABLE `patient_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `patient_medicine`
 --
 ALTER TABLE `patient_medicine`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `patient_tests`
 --
 ALTER TABLE `patient_tests`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `patient_test_report`
 --
 ALTER TABLE `patient_test_report`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pharmacy_info`
 --
 ALTER TABLE `pharmacy_info`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `prescription`
