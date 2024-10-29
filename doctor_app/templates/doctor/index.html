@@ -25,7 +25,7 @@
 							<i class="fe fe-users"></i>
 						</span>
 						<div class="dash-count">
-							<h3>120</h3>
+							<h3>{{total_patient}}</h3>
 						</div>
 					</div>
 					<div class="dash-widget-info">
@@ -46,7 +46,7 @@
 							<i class="fe fe-users"></i>
 						</span>
 						<div class="dash-count">
-							<h3>485</h3>
+							<h3>{{total_appointment}}</h3>
 						</div>
 					</div>
 					<div class="dash-widget-info">
@@ -67,7 +67,7 @@
 							<i class="fe fe-users"></i>
 						</span>
 						<div class="dash-count">
-							<h3>168</h3>
+							<h3>{{total_doctor}}</h3>
 						</div>
 					</div>
 					<div class="dash-widget-info">
@@ -92,64 +92,43 @@
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-hover table-center mb-0">
-							<thead>
+						{% if appiontment_list  %}
+							<table class="table table-bordered table-striped">
 								<tr>
 									<th>SL</th>
-									<th>Doctor Name</th>
-									<th>Speciality</th>
 									<th>Patient Name</th>
-									<th>Apointment Time</th>
+									<th>Appointment Date</th>
+									<th>Appointment Time</th>
+									<th>Serial Numner</th>
 									<th>Status</th>
-									<th class="text-right">Amount</th>
+									<th>Action</th>
 								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>01</td>
-									<td> Dr. Ruby Perrin </td>
-									<td>Dental</td>
-									<td> Charlene Reed </td>
-									<td>9 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
-									<td>
-										<div class="status-toggle">
-											<input type="checkbox" id="status_1" class="check" checked>
-											<label for="status_1" class="checktoggle">checkbox</label>
-										</div>
-									</td>
-									<td class="text-right"> Tk. 200.00 </td>
-								</tr>
-								<tr>
-									<td>01</td>
-									<td> Dr. Ruby Perrin </td>
-									<td>Dental</td>
-									<td> Charlene Reed </td>
-									<td>9 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
-									<td>
-										<div class="status-toggle">
-											<input type="checkbox" id="status_1" class="check" checked>
-											<label for="status_1" class="checktoggle">checkbox</label>
-										</div>
-									</td>
-									<td class="text-right"> Tk. 200.00 </td>
-								</tr>
-								<tr>
-									<td>01</td>
-									<td> Dr. Ruby Perrin </td>
-									<td>Dental</td>
-									<td> Charlene Reed </td>
-									<td>9 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
-									<td>
-										<div class="status-toggle">
-											<input type="checkbox" id="status_1" class="check" checked>
-											<label for="status_1" class="checktoggle">checkbox</label>
-										</div>
-									</td>
-									<td class="text-right"> Tk. 200.00 </td>
-								</tr>
-								 
-							</tbody>
-						</table>
+								
+								{% for data in appiontment_array %}
+									<tr>
+										<td>{{ forloop.counter }}</td>
+										<td>{{ data.patient_name }}</td>
+										<td>{{ data.appiontment_date }}</td>
+										<td>{{ data.appiontment_time }}</td>
+										<td>{{ data.serial_number }}</td>
+										<td>{{ data.appointment_status }}</td>
+										<td>
+											{% if data.test_exist == "Yes" %}
+												<a href="/doctor/patient/{{ data.id }}/test-report/" class="btn btn-success">Test Report</a> 
+											{% else %}
+												<a href="/doctor/patient/{{ data.id }}/write-test/" class="btn btn-success">Write Test </a>
+											{% endif %}
+											<a href="/doctor/patient/{{ data.id }}/write-medicine/" class="btn btn-info">{% if data.medicine_exist == "Yes" %} View Medicine {% else %} Write Medicine {% endif %}</a>
+											{% if data.medicine_exist == "Yes" %}
+												<a href="/doctor/patient/{{ data.id }}/view-prescription/" target="_blank" class="btn btn-primary"> View Prescription </a> 
+											{% endif %}
+										</td>
+									</tr>
+								{% endfor %}
+							</table>
+						{% else %}
+							<h3>No patient found.</h3>
+						{% endif %}
 					</div>
 				</div>
 			</div>

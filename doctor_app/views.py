@@ -140,8 +140,87 @@ def registration_page(request):
 
 
 def doctorDashboard(request):
+	if request.session['user_id'] == False:
+		return redirect('/')
 
-    return render(request, 'doctor/index.html')
+	doctor_id = request.session['user_id'] 
+	total_appointment, total_doctor, total_patient = 0,0,0
+	appiontment_list = models.AppointmentList.objects.filter(doctor_name_id = doctor_id)
+	doctor_list = models.DoctorList.objects.filter(status=True).exclude(id=request.session['user_id'])
+	if doctor_list:
+		total_doctor = len(doctor_list)
+	patient_list = models.AppointmentList.objects.filter(doctor_name_id = doctor_id)
+	if patient_list:
+		total_patient = len(patient_list)
+	# if appiontment_list:
+	# 	total_appointment = len(appiontment_list)
+	appiontment_array = []
+
+	for data in appiontment_list:
+		if data.appointment_status == "Pending" or data.appointment_status == "Processing":
+			total_appointment +=1
+
+		chk_patient_test = models.PatientTest.objects.filter(appointment_id=data.id).first()
+		test_exist = "No"
+		if chk_patient_test:
+			test_exist = "Yes"
+
+		chk_patient_medicine = models.PatientMedicine.objects.filter(appointment_id=data.id).first()
+		medicine_exist = "No"
+		if chk_patient_medicine:
+			medicine_exist = "Yes"
+		place_json = {}
+		place_json["id"] = data.id
+		place_json["patient_name"] = data.patient_name
+		place_json["appiontment_date"] = data.appiontment_date
+		place_json["appiontment_time"] = data.appiontment_time
+		place_json["serial_number"] = data.serial_number
+		place_json["appointment_status"] = data.appointment_status
+		place_json["test_exist"] = test_exist
+		place_json["medicine_exist"] = medicine_exist
+		appiontment_array.append(place_json)
+		
+	context={
+		'appiontment_list':appiontment_list,
+		'appiontment_array':appiontment_array,
+		'total_appointment':total_appointment,
+		'total_doctor':total_doctor,
+		'total_patient':total_patient,
+	}
+	
+	return render(request, 'doctor/index.html', context)
+
+
+
+def patient_wise_test_list(request):
+	if request.session['user_id'] == False:
+		return redirect('/')
+
+	doctor_id = request.session['user_id'] 
+	patient_test_list = models.AppointmentList.objects.filter(doctor_name_id = doctor_id)
+
+	patient_test_list_arr = []
+
+	for data in patient_test_list:  
+		test_list = models.PatientTest.objects.filter(patient_name_id = data.patient_name_id, appointment_id=data.id)
+		test_array = []
+		if test_list:
+			for test in test_list:
+				test_array.append(test.test_name) 
+
+		place_json = {}
+		place_json['id'] = data.id
+		place_json['patient_name'] = data.patient_name
+		place_json['appiontment_date'] = data.appiontment_date
+		place_json['serial_number'] = data.serial_number
+		place_json['test_array'] = test_array
+		patient_test_list_arr.append(place_json)
+
+
+	context = {
+		'patient_test_list':patient_test_list_arr,
+	}
+	return render(request, 'doctor/patient_wise_test_list.html', context)
 
 
 

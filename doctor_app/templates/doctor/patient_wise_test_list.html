@@ -1,0 +1,63 @@
+{% extends 'common/master.html' %}
+<title>{% block title %} Patient Test List {% endblock %}</title>
+{% load static %}
+{% block content %}
+
+<style>
+    .testListPatient{
+        margin:0;padding:0;list-style: none;
+    }
+    .testListPatient li{
+        float: left;
+        margin:2px 3px;
+        border:1px solid #d3d2d2;
+        padding:2px 7px;
+        background: #f5f5f5; 
+    }
+</style>
+<div class="content container-fluid  bg-white"> 
+    <div class="row">
+        <div class="col-sm-12"> 
+                    
+            <div class="patient_list">
+                <h2> Patient Test List </h2> <hr>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>SL</th>
+                        <th>Patient Name</th>
+                        <th>Appointment Date</th> 
+                        <th>Serial Numner</th>  
+                        <th style="width:45%;">Test List</th>
+                        <th style="width: 100px;">Reports</th>
+                    </tr>
+                    {% for data in patient_test_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ data.patient_name }}</td>
+                            <td>{{ data.appiontment_date }}</td> 
+                            <td>{{ data.serial_number }}</td> 
+                            <td>
+                                {% if data.test_array %}
+                                {% for tst in data.test_array %}
+                                    <ul class="testListPatient">
+                                        <li>{{ tst }}</li>
+                                    </ul>
+                                {% endfor %}
+                                {% else %} No Test yet. {%endif %}
+                            </td>
+                            <td>
+                                {% if data.test_array %}
+                                    <a href="" class="btn btn-info">Reports</a>
+                                {% else %} No Report{%endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div> 
+    </div>
+</div>
+
+
+{% endblock %}

@@ -19,6 +19,7 @@ urlpatterns = [
     path('doctor-list/<int:id>/profile/', views.doctor_wise_profile),
     path('doctor/patient/<int:appointment_id>/view-prescription/', views.patient_wise_prescription),
     path('doctor/patient/<int:id>/view-test-report/', views.view_test_report_by_doctor),
+    path('doctor/patient-test-list/', views.patient_wise_test_list),
 
     # path('doctor/find-patient/', views.find_a_patient),
     # path('doctor/patient-list/', views.patient_list),
@@ -26,7 +27,7 @@ urlpatterns = [
     # path('doctor-list/', views.doctor_list),
     # path('test-list/', views.test_list),
     # path('prescription/', views.prescription),
-    # path('patient-test/', views.patient_test),
+    # path('doctor/patient-test/', views.patient_test),
     # path('doctor/patient-test-report/', views.doctor_patient_test_report),
     # path('patient-medicine/', views.patient_medicine),
     # path('patient/<int:id>/write-test/', views.patient_wise_test_write),
