@@ -192,6 +192,7 @@ class PatientTest(models.Model):
         verbose_name = 'Patient Test'
         verbose_name_plural = 'Patient Test List'
 
+
 class PatientMedicine(models.Model):
     patient_name        = models.ForeignKey(PatientList, on_delete=models.DO_NOTHING)
     appointment         = models.ForeignKey(AppointmentList, on_delete=models.DO_NOTHING, blank=True, null=True)

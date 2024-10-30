@@ -46,6 +46,7 @@ urlpatterns = [
     path('patient/doctor/<int:id>/appiontment/', patient_views.my_appiontment), 
     path('patient/appiontment-list/', patient_views.appiontment_list), 
     path('patient/my-prescription-list/', patient_views.my_prescription),
+    path('patient/<int:appointment_id>/prescription-view/', patient_views.my_prescription_view),
     path('patient/my-test-list/', patient_views.my_test_list),
 
 ]

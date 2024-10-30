@@ -17,7 +17,7 @@
 	<!-- /Page Header -->
 
 	<div class="row">
-		<div class="col-xl-3 col-sm-6 col-12">
+		<div class="col-xl-4 col-sm-6 col-12">
 			<div class="card">
 				<div class="card-body">
 					<div class="dash-widget-header">
@@ -25,11 +25,11 @@
 							<i class="fe fe-users"></i>
 						</span>
 						<div class="dash-count">
-							<h3>3</h3>
+							<h3>{{total_appointment}}</h3>
 						</div>
 					</div>
 					<div class="dash-widget-info">
-						<h6 class="text-muted">Prescription</h6>
+						<h6 class="text-muted">Appointment</h6>
 						<div class="progress progress-sm">
 							<div class="progress-bar bg-primary w-50"></div>
 						</div>
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-3 col-sm-6 col-12">
+		<div class="col-xl-4 col-sm-6 col-12">
 			<div class="card">
 				<div class="card-body">
 					<div class="dash-widget-header">
@@ -58,28 +58,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-3 col-sm-6 col-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="dash-widget-header">
-						<span class="dash-widget-icon text-danger border-danger">
-							<i class="fe fe-money"></i>
-						</span>
-						<div class="dash-count">
-							<h3>48</h3>
-						</div>
-					</div>
-					<div class="dash-widget-info">
-						
-						<h6 class="text-muted">Appointment</h6>
-						<div class="progress progress-sm">
-							<div class="progress-bar bg-danger w-50"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xl-3 col-sm-6 col-12">
+		 
+		<div class="col-xl-4 col-sm-6 col-12">
 			<div class="card">
 				<div class="card-body">
 					<div class="dash-widget-header">
@@ -99,6 +79,35 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th style="width: 5%;">#</th>
+					<th style="width: 15%;">Doctor Name</th>
+					<th style="width: 15%;">Pateint Name</th>
+					<th style="width: 25%;">Pateint Remarks</th>
+					<th style="width: 11%;">Appoint Date</th>
+					<th style="width: 14%;">Schedule Time</th>
+					<th style="width: 10%;">Serial Numner</th>
+					<th style="width: 10%;">Status</th>
+				</tr>
+				{% for data in app_lst %}
+					<tr>
+						<td>{{ forloop.counter }}</td>
+						<td>{{ data.doctor_name }} {{ data.doctor_name.last_name }}</td>
+						<td>{{ data.patient_name }} {{ data.patient_name.last_name }} </td>
+						<td>{{ data.patient_remarks}} </td>
+						<td>{{ data.appiontment_date|date:"d M Y" }}</td>
+						<td>{{ data.schedule_name.schedule_time_in }} - {{ data.schedule_name.schedule_time_out }}</td>
+						<td>{{ data.serial_number }}</td>
+						<td>{{ data.appointment_status }}</td>
+					
+					</tr>
+				{% endfor %}
+			</table>
 		</div>
 	</div>
  
